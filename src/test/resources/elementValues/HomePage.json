@@ -1,0 +1,122 @@
+[
+  {
+    "key": "5",
+    "value": "onetrust-banner-sdk",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "onetrust-accept-btn-handler",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "onetrust-pc-btn-handler",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "//div[@data-testid='root']//div[@role='presentation']//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']]//button[./*[text()='Ücretsiz kaydol']]",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "button[data-tesid='upsell-download-app-button']",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']]//p/span[text()='Zaten hesabın var mı?']/following-sibling::a[text()='Oturum aç']",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']]//button[text()='Kapat']",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  }
+]

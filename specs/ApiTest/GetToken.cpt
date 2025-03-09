@@ -1,0 +1,14 @@
+
+# Get Token
+* "accessTokenApi" api testi için map key olustur
+* "https://accounts.spotify.com/api/token" baseUri ı "accessTokenApi" e ekle
+* "application/x-www-form-urlencoded" contentType degerini "accessTokenApi" e ekle
+* "grant_type" "client_credentials" parametre degerini "accessTokenApi" e ekle
+* "client_id" "" parametre degerini "accessTokenApi" e ekle
+* "client_secret" "" parametre degerini "accessTokenApi" e ekle
+* "post" requestType ve "" i "accessTokenApi" e ekle ""
+* "accessTokenApi" api testi için istek at "2" status code 500, log="false" if "true"
+* "accessTokenApi" api testi statusCode değeri "200" değerine eşit mi
+* "accessTokenApi" json üzerindeki "access_token" json yolunu oku "String" tipindeki degeri "token" keyinde tut
+* "token" mapte tutulan degeri "tokenKeyValue" keyinde tut
+* "token" keyinde tutulan değeri log olarak ekle
