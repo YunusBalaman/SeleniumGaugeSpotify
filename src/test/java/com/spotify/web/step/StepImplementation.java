@@ -23,8 +23,7 @@ public class StepImplementation {
     MethodsUtil methodsUtil;
 
     public StepImplementation() {
-        if(Driver.webDriver != null  //!Driver.TestFileName.startsWith("/specs/ApiMigrosNext")
-         ){
+        if(Driver.webDriver != null){
             methods = new Methods();
         }
         methodsUtil = new MethodsUtil();
@@ -37,7 +36,6 @@ public class StepImplementation {
             methods.clickElementJs(methods.getBy(key));
         }else
             methods.click(methods.getBy(key));
-       // methods.click(methods.getBy(key));
     }
 
     @Step("<key> elementi varsa tıkla <timeout>")
@@ -52,7 +50,7 @@ public class StepImplementation {
     @Step("<key> elementine tıkla if <ifCondition>")
     public void clickElementIf(String key, String ifCondition) {
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             methods.click(methods.getBy(key));
         }
     }
@@ -158,23 +156,21 @@ public class StepImplementation {
     @Step("<url> navigateTo")
     public void navigateTo(String url) {
 
-        url = methodsUtil.getTextByMap(url);
-        url = methodsUtil.setValueWithMap(url);
+        url = methodsUtil.setValueWithMapKey(url);
         methods.navigateTo(url);
     }
 
     @Step("<url> adresine git")
     public void getUrl(String url) {
 
-        url = methodsUtil.getTextByMap(url);
-        url = methodsUtil.setValueWithMap(url);
+        url = methodsUtil.setValueWithMapKey(url);
         methods.get(url);
     }
 
     @Step("<url> adresine git <ifCondition>")
     public void getUrl(String url, String ifCondition) {
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             getUrl(url);
         }
     }
@@ -182,8 +178,7 @@ public class StepImplementation {
     @Step("Şu anki url <url> ile <condition> durumunu sağlıyor mu <count>")
     public void doesUrl(String url, String condition, int count) {
 
-        url = methodsUtil.getTextByMap(url);
-        url = methodsUtil.setValueWithMap(url);
+        url = methodsUtil.setValueWithMapKey(url);
         assertTrue(methods.doesUrl(url, count, condition),"Beklenen url, sayfa url ine eşit değil");
     }
 
@@ -319,43 +314,42 @@ public class StepImplementation {
     @Step("<key> elementinin value değeriyle <expectedValue> değerinin <condition> durumu kontrol edilir <count> trim <trim>")
     public void checkElementValue(String key, String expectedValue, String condition, int count, String trim){
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
         methods.checkElementCondition(methods.getBy(key),"valueJs", expectedValue, condition, count, trim);
     }
 
     @Step("<key> elementinin validationMessage değeriyle <expectedValue> değerinin <condition> durumu kontrol edilir <count> trim <trim>")
     public void checkValidationMessage(String key, String expectedValue, String condition, int count, String trim){
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
         methods.checkElementCondition(methods.getBy(key),"validationMessage", expectedValue, condition, count, trim);
     }
 
     @Step("<key> elementinin checkValidity değeriyle <expectedValue> değerinin <condition> durumu kontrol edilir <count> trim <trim>")
     public void checkValidity(String key, String expectedValue, String condition, int count, String trim){
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
         methods.checkElementCondition(methods.getBy(key),"checkValidity", expectedValue, condition, count, trim);
     }
 
     @Step("<key> elementinin <attribute> niteliği <expectedValue> değerinin <condition> durumu kontrol edilir <count>")
     public void checkElementAttribute(String key, String attribute, String expectedValue, String condition, int count) {
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
-        condition = methodsUtil.getTextByMap(condition);
+        condition = methodsUtil.setValueWithMapKey(condition);
         methods.checkElementCondition(methods.getBy(key),"attribute", expectedValue, condition, count,"false", attribute);
     }
 
     @Step("<key> elementinin text değeriyle <expectedValue> değerinin <condition> durumu kontrol edilir <count> trim <trim>")
     public void checkElementText(String key, String expectedValue, String condition, int count, String trim){
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
         methods.checkElementCondition(methods.getBy(key),"text", expectedValue, condition, count, trim);
     }
 
     @Step("<key> elementinin text content değeriyle <expectedValue> değerinin <condition> durumu kontrol edilir <count> trim <trim>")
     public void checkElementTextContentJs(String key, String expectedValue, String condition, int count, String trim){
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
         methods.checkElementCondition(methods.getBy(key),"textContentJs", expectedValue, condition, count, trim);
     }
 
@@ -750,7 +744,6 @@ public class StepImplementation {
     @Step("Set Driver element enviroments <enviroment>")
     public void setDriverEnviroment(String enviroment){
 
-        enviroment = methodsUtil.getTextByMap(enviroment);
         enviroment = methodsUtil.setValueWithMapKey(enviroment);
         Driver.elementEnviroments.add(enviroment);
     }
@@ -758,7 +751,7 @@ public class StepImplementation {
     @Step("Clear Local Storage <clearLocalStorage>")
     public void clearLocalStorage(String clearLocalStorage){
 
-        clearLocalStorage = methodsUtil.getTextByMap(clearLocalStorage);
+        clearLocalStorage = methodsUtil.setValueWithMapKey(clearLocalStorage);
         if (Boolean.parseBoolean(clearLocalStorage)) {
             methods.clearLocalStorage();
         }

@@ -94,7 +94,7 @@ public class ReadJsonMethods {
         jsonPathValue.setValue(objectValue);
         jsonPathValue.setType(type);
         jsonPathValue.setId(id);
-        jsonPathValue.setValueControlType(methodsUtil.getTextByMap(valueControlType));
+        jsonPathValue.setValueControlType(methodsUtil.setValueWithMapKey(valueControlType));
         jsonPathValue.setOrActive(OrActive);
         if (Driver.TestMap.containsKey(mapKey)){
             ((List<JsonPathValue>) Driver.TestMap.get(mapKey)).add(jsonPathValue);

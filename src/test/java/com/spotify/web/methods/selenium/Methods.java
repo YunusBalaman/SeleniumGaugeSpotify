@@ -111,7 +111,7 @@ public class Methods {
             if (enviromentMap != null) {
                 String enviroment = "EMPTY";
                 for (String e: Driver.elementEnviroments) {
-                    e = methodsUtil.getTextByMap(e);
+                    e = methodsUtil.setValueWithMapKey(e);
                     if (enviromentMap.containsKey(e)){
                         enviroment = e;
                        // System.out.println("enviroment: " + enviroment);

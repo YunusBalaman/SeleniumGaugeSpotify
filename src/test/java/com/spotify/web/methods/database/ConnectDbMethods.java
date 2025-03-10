@@ -140,7 +140,6 @@ public class ConnectDbMethods {
 
     public int executeUpdate(String connectionMapKey, String query) {
 
-        query = methodsUtil.getTextByMap(query);
         query = methodsUtil.setValueWithMapKey(query);
         return connectDatabase.executeUpdate(connectDatabase.createStatement(connectionMapKey), query);
     }
@@ -161,7 +160,6 @@ public class ConnectDbMethods {
 
     public void sendQuery(String connectionMapKey, String query, String mapKey, boolean logActive){
 
-        query = methodsUtil.getTextByMap(query);
         query = methodsUtil.setValueWithMapKey(query);
         System.out.println(query);
         /** if(query.trim().length() < 6 || !query.trim().substring(0,6).equalsIgnoreCase("select")){
@@ -212,14 +210,14 @@ public class ConnectDbMethods {
         for (int i = 0; i < queryList.size(); i++) {
             String database = databaseList.get(i);
             String databaseName = databaseNameList.get(i);
-            String environment = methodsUtil.getTextByMap(environmentList.get(i));
+            String environment = methodsUtil.setValueWithMapKey(environmentList.get(i));
             String user = userList.get(i);
             String password = passwordList.get(i);
             String ip = ipList.get(i);
             String port = portList.get(i);
             String key = database + databaseName + environment + user;
             String query = queryList.get(i);
-            query = methodsUtil.getTextByMap(query);
+            query = methodsUtil.setValueWithMapKey(query);
             query = methodsUtil.setValueWithMapKey(query);
             if (!Driver.DatabaseMap.containsKey(key)) {
                 connectDatabase.addConnectionList(key);

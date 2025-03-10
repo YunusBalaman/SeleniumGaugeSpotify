@@ -30,17 +30,10 @@ public class StepUtilsImplementation {
         methodsUtil = new MethodsUtil();
     }
 
-    @Step("<mapKey> keyinde tutulan değeri log olarak ekle")
-    public void logTextByMap(String log){
-
-        log = methodsUtil.getTextMap(log);
-        logger.info(log);
-    }
-
     @Step("<log> log olarak ekle")
     public void logText(String log){
 
-        log =  methodsUtil.getTextByMap(log);
+        log =  methodsUtil.setValueWithMapKey(log);
         logger.info(log);
     }
 
@@ -67,7 +60,7 @@ public class StepUtilsImplementation {
     @Step("<timeMillis> milisaniye tipindeki zamanı <format> formatındaki zamana çevir ve <mapKey> de tut")
     public void saveTimeFromCurrentTimeMillis(String timeMillis, String format, String mapKey){
 
-        timeMillis = methodsUtil.getTextByMap(timeMillis);
+        timeMillis = methodsUtil.setValueWithMapKey(timeMillis);
         //String time = methodsUtil.getTimeFromMillisWithZoneId(format, Long.parseLong(timeMillis),"Europe/Istanbul");
         String time = methodsUtil.getTimeFromMillis(format, Long.parseLong(timeMillis));
         logger.info(timeMillis + " " + time);
@@ -78,7 +71,7 @@ public class StepUtilsImplementation {
     public void saveTimeFromCurrentTimeMillis(String timeMillis, String format, int year, int month
             , int day, int hour, int minute, int second, String forOffsetHours, String mapKey){
 
-        timeMillis = methodsUtil.getTextByMap(timeMillis);
+        timeMillis = methodsUtil.setValueWithMapKey(timeMillis);
         String time = methodsUtil.getTimeFromMillisPlus(format, Long.parseLong(timeMillis)
                 , year, month, day, hour, minute, second,0, forOffsetHours,"null");
         logger.info(timeMillis + " " + time);
@@ -89,7 +82,7 @@ public class StepUtilsImplementation {
     public void saveTimeFromCurrentTimeMillis(String timeMillis, String language, String format, int year, int month
             , int day, int hour, int minute, int second, String forOffsetHours, String mapKey){
 
-        timeMillis = methodsUtil.getTextByMap(timeMillis);
+        timeMillis = methodsUtil.setValueWithMapKey(timeMillis);
         String time = methodsUtil.getTimeFromMillisPlus(format, Long.parseLong(timeMillis)
                 , year, month, day, hour, minute, second,0, forOffsetHours, language);
         logger.info(timeMillis + " " + time);
@@ -99,7 +92,7 @@ public class StepUtilsImplementation {
     @Step("<timeMillis> milisaniye tipindeki zamanı <format> formatındaki zamana <forOffsetHour> offset le çevir ve <mapKey> de tut")
     public void saveTimeFromCurrentTimeMillis(String timeMillis, String format, int forOffsetHour, String mapKey){
 
-        timeMillis = methodsUtil.getTextByMap(timeMillis);
+        timeMillis = methodsUtil.setValueWithMapKey(timeMillis);
         String time = methodsUtil.getTimeFromMillis(format, Long.parseLong(timeMillis), forOffsetHour);
         logger.info(timeMillis + " " + time);
         Driver.TestMap.put(mapKey, time);
@@ -108,7 +101,7 @@ public class StepUtilsImplementation {
     @Step("<time> zamanı <format> formatından milisaniyeye çevir ve <mapKey> de tut")
     public void saveTimeMillisFromTime(String time, String format, String mapKey){
 
-        time = methodsUtil.getTextByMap(time);
+        time = methodsUtil.setValueWithMapKey(time);
         Long timeMillis = methodsUtil.getTimeMillisFromTime(time.trim(), format);
         logger.info(time + " " + timeMillis);
         Driver.TestMap.put(mapKey, timeMillis);
@@ -117,7 +110,7 @@ public class StepUtilsImplementation {
     @Step("<time> zamanı <format> formatından milisaniyeye <forOffsetHour> offset le çevir ve <mapKey> de tut")
     public void saveTimeMillisFromTime(String time, String format, int forOffsetHour, String mapKey){
 
-        time = methodsUtil.getTextByMap(time);
+        time = methodsUtil.setValueWithMapKey(time);
         Long timeMillis = methodsUtil.getTimeMillisFromTime(time.trim(), format, forOffsetHour);
         logger.info(time + " " + timeMillis);
         Driver.TestMap.put(mapKey, timeMillis);
@@ -199,7 +192,7 @@ public class StepUtilsImplementation {
     public void bigDecimalRoundingMode(String value, String scale, String roundingMode, String mapKey){
 
         // FLOOR  HALF_UP   HALF_DOWN   HALF_EVEN   UP   DOWN
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         String newValue = new BigDecimal(value).setScale(Integer.parseInt(scale), RoundingMode.valueOf(roundingMode)).toPlainString();
         Driver.TestMap.put(mapKey, newValue);
     }
@@ -208,8 +201,8 @@ public class StepUtilsImplementation {
     public void bigDecimalProcesses(String islemTipi, String value1, String value2, String scale, String roundingMode, String mapKey){
 
         // FLOOR  HALF_UP   HALF_DOWN   HALF_EVEN   UP   DOWN --> rounding mode yerine koyulacaklar (yukarı-aşağı yuvarla vs...)
-        value1 = methodsUtil.getTextByMap(value1);
-        value2 = methodsUtil.getTextByMap(value2);
+        value1 = methodsUtil.setValueWithMapKey(value1);
+        value2 = methodsUtil.setValueWithMapKey(value2);
         int newScale = Integer.parseInt(scale);
         String newValue = "";
         switch (islemTipi){
@@ -242,14 +235,14 @@ public class StepUtilsImplementation {
 
     @Step("<expectedValue> expectedValue null mü")
     public void controlValueNull(String expectedValue) {
-        assertNull(methodsUtil.getTextByMap(expectedValue));
+        assertNull(methodsUtil.setValueWithMapKey(expectedValue));
     }
 
     @Step("<expectedValue> expectedValue ile <actualValue> actualValue eşit mi <trim>")
     public void controlValuesEqual(String expectedValue, String actualValue, String trim) {
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
-        actualValue = methodsUtil.getTextByMap(actualValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
+        actualValue = methodsUtil.setValueWithMapKey(actualValue);
         logger.info("Beklenen deger: " + expectedValue);
         logger.info("Alınan deger: " + actualValue);
         assertEquals(methodsUtil.stringTrim(expectedValue, trim), methodsUtil.stringTrim(actualValue, trim),"Değerler eşit değil");
@@ -259,7 +252,7 @@ public class StepUtilsImplementation {
     @Step("<expectedValue> expectedValue ile <actualValue> actualValue <condition> durumunu sağlıyor mu <trim> if <ifCondition>")
     public void controlValuesCondition(String expectedValue, String actualValue, String condition, String trim, String ifCondition) {
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             controlValuesCondition(expectedValue, actualValue, condition, trim);
         }
     }
@@ -267,8 +260,8 @@ public class StepUtilsImplementation {
     @Step("<expectedValue> expectedValue ile <actualValue> actualValue <condition> durumunu sağlıyor mu <trim>")
     public void controlValuesCondition(String expectedValue, String actualValue, String condition, String trim) {
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
-        actualValue = methodsUtil.getTextByMap(actualValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
+        actualValue = methodsUtil.setValueWithMapKey(actualValue);
         logger.info("Beklenen deger: " + expectedValue);
         logger.info("Alınan deger: " + actualValue);
         assertTrue(methodsUtil.conditionValueControl(methodsUtil.stringTrim(expectedValue, trim)
@@ -285,8 +278,8 @@ public class StepUtilsImplementation {
     @Step("<expectedValue> expectedValue ile <actualValue> actualValue <condition> durumunu <mapKey> keyinde tut <trim>")
     public void saveControlResult(String expectedValue, String actualValue, String condition, String mapKey, String trim) {
 
-        expectedValue = methodsUtil.getTextByMap(expectedValue);
-        actualValue = methodsUtil.getTextByMap(actualValue);
+        expectedValue = methodsUtil.setValueWithMapKey(expectedValue);
+        actualValue = methodsUtil.setValueWithMapKey(actualValue);
         Driver.TestMap.put(mapKey, methodsUtil.conditionValueControl(methodsUtil.stringTrim(expectedValue, trim)
                 , methodsUtil.stringTrim(actualValue, trim), condition));
     }
@@ -333,7 +326,7 @@ public class StepUtilsImplementation {
     @Step("<value> değeri <replaceValues> degerlerini temizle ve <mapKey> değerinde tut <trim>")
     public void clearText(String value, String replaceValues, String mapKey, boolean trim){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         String[] splitValues = replaceValues.split("\\?!");
         for (String splitValue: splitValues){
             if (!splitValue.equals("")){
@@ -348,7 +341,7 @@ public class StepUtilsImplementation {
     @Step("<value> değeri <oldChars> değerlerini <newChars> degerleriyle değiştir ve <mapKey> değerinde tut <trim>")
     public void replaceText(String value, String oldChars, String newChars, String mapKey, String trim){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         String[] oldCharArray = oldChars.split("\\?!");
         String[] newCharArray = newChars.split("\\?!");
         String oldChar = "";
@@ -357,8 +350,8 @@ public class StepUtilsImplementation {
             oldChar = oldCharArray[i];
             newChar = newCharArray[i];
             if (!oldChar.equals("")){
-                oldChar = methodsUtil.getTextByMap(oldChar);
-                newChar = methodsUtil.getTextByMap(newChar);
+                oldChar = methodsUtil.setValueWithMapKey(oldChar);
+                newChar = methodsUtil.setValueWithMapKey(newChar);
                 value = value.replace(oldChar, newChar);
             }
         }
@@ -369,8 +362,8 @@ public class StepUtilsImplementation {
     @Step("<value> değeri <regex> regex değerini <newValue> degeriyle değiştir ve <mapKey> değerinde tut <trim>")
     public void replaceWithRegex(String value, String regex, String newValue, String mapKey, boolean trim){
 
-        value = methodsUtil.getTextByMap(value);
-        newValue = methodsUtil.getTextByMap(newValue);
+        value = methodsUtil.setValueWithMapKey(value);
+        newValue = methodsUtil.setValueWithMapKey(newValue);
         Matcher matcher = Pattern.compile(regex).matcher(value);
         while (matcher.find()){
             String t = matcher.group();
@@ -384,7 +377,7 @@ public class StepUtilsImplementation {
     @Step("<value> değerini <splitValue> degeriyle parçala ve <mapKey> değerinde tut <trim>")
     public void splitAndSave(String value, String splitValue, String mapKey, boolean trim){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         String[] values = value.split(splitValue);
         List<String> list = new ArrayList<>();
         for (String a : values){
@@ -397,8 +390,8 @@ public class StepUtilsImplementation {
     @Step("<islemTipi> işlem tipiyle <value1> ve <value2> integer değerleriyle işlemi gerçekleştir ve <mapKey> keyinde tut")
     public void integerProcess(String islemTipi, String value1, String value2, String mapKey){
 
-        value1 = methodsUtil.getTextByMap(value1);
-        value2 = methodsUtil.getTextByMap(value2);
+        value1 = methodsUtil.setValueWithMapKey(value1);
+        value2 = methodsUtil.setValueWithMapKey(value2);
         int total = methodsUtil.integerProcess(islemTipi, value1, value2);
         Driver.TestMap.put(mapKey, total);
     }
@@ -406,7 +399,7 @@ public class StepUtilsImplementation {
     @Step("<value> degerini <mapKey> keyinde tut")
     public void saveData(String value, String mapKey) {
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         Driver.TestMap.put(mapKey, value);
     }
 
@@ -419,7 +412,7 @@ public class StepUtilsImplementation {
                 : Boolean.parseBoolean(condition);
         isTrue = reverse != isTrue;
         if (isTrue) {
-            value = methodsUtil.getTextByMap(value);
+            value = methodsUtil.setValueWithMapKey(value);
             Driver.TestMap.put(mapKey, value);
         }
     }
@@ -492,7 +485,7 @@ public class StepUtilsImplementation {
     @Step("<value> textinin karakter uzunluğunu <mapKey> keyinde tut")
     public void charLength(String value, String mapKey){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         int i = value.toCharArray().length;
         Driver.TestMap.put(mapKey,i);
     }
@@ -500,7 +493,7 @@ public class StepUtilsImplementation {
     @Step("<value> değerini listeye ekle <mapKey> keyinde tut")
     public void setList(String value, String mapKey){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         if(Driver.TestMap.containsKey(mapKey)){
             List<String> list = (List<String>) Driver.TestMap.get(mapKey);
             list.add(value);
@@ -514,7 +507,7 @@ public class StepUtilsImplementation {
     @Step("<mapKey> keyine boş bir liste oluştur if <condition>")
     public void createBlankList(String mapKey, String condition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(condition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(condition))) {
 
             Driver.TestMap.put(mapKey, new ArrayList<>());
         }
@@ -562,7 +555,7 @@ public class StepUtilsImplementation {
     @Step("<fileLocation> csv dosyasını oku <mapKeySuffix> if <condition>")
     public void readCsvFile(String fileLocation, String mapKeySuffix, String condition) {
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(condition).toString())){
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(condition).toString())){
             readCsvFile(fileLocation, mapKeySuffix);
         }
     }
@@ -605,7 +598,7 @@ public class StepUtilsImplementation {
     @Step("<listMapKey> listesinin <value> value değerine eşit elemanının indexini <mapKey> keyinde tut <trim>")
     public void getListNumber(String listMapKey, String value, String mapKey, boolean trim){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         List<String> list = new ArrayList<>((List<String>) Driver.TestMap.get(listMapKey));
         String listValue = "";
         for (int i = 0; i < list.size(); i++){
@@ -711,7 +704,6 @@ public class StepUtilsImplementation {
     @Step("<mathExpressionScript> scriptini kullanarak matematiksel işlemi gerçekleştir <mapKey> keyinde tut")
     public void mathExpression(String mathExpressionScript, String mapKey){
 
-        mathExpressionScript = methodsUtil.getTextByMap(mathExpressionScript);
         mathExpressionScript = methodsUtil.setValueWithMapKey(mathExpressionScript);
         Object result = methodsUtil.getMathExpression(mathExpressionScript);
         logger.info(result.toString());
@@ -721,28 +713,28 @@ public class StepUtilsImplementation {
     @Step("<value> değerini double olarak <mapKey> keyinde tut")
     public void saveValueAsDouble(String value, String mapKey){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         Driver.TestMap.put(mapKey, Double.parseDouble(value));
     }
 
     @Step("<value> değerini float olarak <mapKey> keyinde tut")
     public void saveValueAsFloat(String value, String mapKey){
 
-        value = methodsUtil.getTextByMap(value);
+        value = methodsUtil.setValueWithMapKey(value);
         Driver.TestMap.put(mapKey, Float.parseFloat(value));
     }
 
     @Step("<listMapKey> listesinin <number> elemanını <mapKey> keyinde tut")
     public void getListValue(String listMapKey, String number, String mapKey){
 
-        number = methodsUtil.getTextByMap(number);
+        number = methodsUtil.setValueWithMapKey(number);
         Driver.TestMap.put(mapKey, ((List) Driver.TestMap.get(listMapKey)).get(Integer.parseInt(number)));
     }
 
     @Step("<listMapKey> listesinin <number> elemanını <mapKey> keyinde tut <trim>")
     public void getListValue(String listMapKey, String number, String mapKey, boolean trim){
 
-        number = methodsUtil.getTextByMap(number);
+        number = methodsUtil.setValueWithMapKey(number);
         String value = ((List) Driver.TestMap.get(listMapKey)).get(Integer.parseInt(number)).toString();
         Driver.TestMap.put(mapKey, trim ? value.trim(): value);
     }

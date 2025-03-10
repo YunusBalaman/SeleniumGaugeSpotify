@@ -48,7 +48,7 @@ public class StepDatabaseImplementation {
     @Step("<database> database <databaseName> database name <username> username <password> password <ip> ip <port> port connect database <connectionMapKey> if <ifCondition>")
     public void connectDb(String database, String databaseName, String username, String password, String ip, String port, String connectionMapKey, String ifCondition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             connectDb(database, databaseName, username, password, ip, port, connectionMapKey);
         }
     }
@@ -69,7 +69,7 @@ public class StepDatabaseImplementation {
     @Step("<mapKey> print <database> db table names <oracleTableGroupName> if <ifCondition>")
     public void printDbTableNames(String mapKey, String database, String oracleTableGroupName, String ifCondition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             printDbTableNames(mapKey, database, oracleTableGroupName);
         }
     }
@@ -77,7 +77,7 @@ public class StepDatabaseImplementation {
     @Step("<mapKey> execute <query> query <mapKey> if <ifCondition>")
     public void sendQuery(String mapKey, String query, String mapKeySuffix, String ifCondition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             sendQuery(mapKey, query, mapKeySuffix,false);
         }
     }
@@ -91,7 +91,7 @@ public class StepDatabaseImplementation {
     @Step("<queryMapKey> keyindeki <index> index <columnName> column name datasını <key> keyinde tut")
     public void saveQueryValue(String queryMapKey, String index, String columnName, String key){
 
-        index = methodsUtil.getTextByMap(index);
+        index = methodsUtil.setValueWithMapKey(index);
         Object value = null;
         if (!Driver.TestMap.containsKey(queryMapKey)){
             fail("Key bulunamadı");
@@ -116,7 +116,7 @@ public class StepDatabaseImplementation {
     @Step("<connectionMapKey> execute update <query> query if <ifCondition>")
     public void executeUpdateQuery(String connectionMapKey, String query, String ifCondition) {
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             int result = connectDbMethods.executeUpdate(connectionMapKey, query);
             System.out.println(result);
         }

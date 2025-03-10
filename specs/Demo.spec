@@ -12,10 +12,12 @@ Demo Scenario
 * Set Devtools
 * Enable Network
 * Listen network api requests
-<apiUrl> Deneme <apiMethod> Network <number>
-Set devtools listen current request number "numberDevtoolsKeyValue"
 * "https://open.spotify.com/intl-tr" adresine git
+* waitPageLoadCompleteJs
+* waitPageScrollingCompleteJs
 * "5" saniye bekle
+* "https://gew4-spclient.spotify.com/gabo-receiver-service/public/v3/events" apiUrl "post" Network "0"
+Set devtools listen current request number "numberDevtoolsKeyValue"
 * Clear listeners and close devtools
 * "5" saniye bekle
 

@@ -45,7 +45,6 @@ public class StepApiImplementation {
     @Step("<baseUri> baseUri ı <apiMapKey> e ekle")
     public void setKeyBaseUri(String baseUri, String apiMapKey){
 
-        baseUri = methodsUtil.getTextByMap(baseUri);
         baseUri = methodsUtil.setValueWithMapKey(baseUri);
         logger.info("BaseUri: " + baseUri);
         Driver.apiMap.get(apiMapKey).put("baseUri", baseUri);
@@ -67,7 +66,7 @@ public class StepApiImplementation {
     @Step("<contentType> contentType degerini <apiMapKey> e ekle")
     public void setKeyContentType(String contentType, String apiMapKey){
 
-        contentType = methodsUtil.getTextByMap(contentType);
+        contentType = methodsUtil.setValueWithMapKey(contentType);
         logger.info("Content-Type: " + contentType);
         Driver.apiMap.get(apiMapKey).put("contentType", contentType);
     }
@@ -76,8 +75,7 @@ public class StepApiImplementation {
     @Step("<headerKey> <headerValue> header degerini <apiMapKey> e ekle")
     public void setKeyHeaders(String headerKey, String headerValue, String apiMapKey){
 
-        headerKey = methodsUtil.getTextByMap(headerKey);
-        headerValue = methodsUtil.getTextByMap(headerValue);
+        headerKey = methodsUtil.setValueWithMapKey(headerKey);
         headerValue = methodsUtil.setValueWithMapKey(headerValue);
         logger.info("**Headers** " + headerKey + " : " + (!headerKey.equals("Authorization") ? headerValue : "Bearer ******* token gizlendi"));
         if (Driver.apiMap.get(apiMapKey).containsKey("headers")){
@@ -93,7 +91,7 @@ public class StepApiImplementation {
     @Step("<headerKey> <headerValue> header degerini <apiMapKey> e ekle <ifCondition>")
     public void setKeyHeaders(String headerKey, String headerValue, String apiMapKey, String ifCondition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))){
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))){
             setKeyHeaders(headerKey, headerValue, apiMapKey);
         }
     }
@@ -101,8 +99,8 @@ public class StepApiImplementation {
     @Step("<username> <password> basic auth degerini <apiMapKey> e ekle preemptive <preemptive>")
     public void setBasicAuth(String username, String password, String apiMapKey, Boolean preemptive) {
 
-        username = methodsUtil.getTextByMap(username);
-        password = methodsUtil.getTextByMap(password);
+        username = methodsUtil.setValueWithMapKey(username);
+        password = methodsUtil.setValueWithMapKey(password);
         ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<String, Object>();
         map.put("username", username);
         map.put("password", password);
@@ -113,7 +111,7 @@ public class StepApiImplementation {
     @Step("<token> değerini auth2 için <apiMapKey> e ekle")
     public void setAuth2(String token, String apiMapKey) {
 
-        token = methodsUtil.getTextByMap(token);
+        token = methodsUtil.setValueWithMapKey(token);
         ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<String, Object>();
         map.put("token", token);
         Driver.apiMap.get(apiMapKey).put("auth2", map);
@@ -130,20 +128,20 @@ public class StepApiImplementation {
     @Step("<host> <port> <username> <password> yada <uri> degerleriyle proxy i <apiMapKey> e ekle")
     public void setProxy(String host, String port, String username, String password, String uri, String apiMapKey) {
 
-        host = methodsUtil.getTextByMap(host);
-        port = methodsUtil.getTextByMap(port);
+        host = methodsUtil.setValueWithMapKey(host);
+        port = methodsUtil.setValueWithMapKey(port);
         ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<String, Object>();
         if (!host.equals("") && !port.equals("")) {
             map.put("host", host);
             map.put("port", port);
         }
-        username = methodsUtil.getTextByMap(username);
-        password = methodsUtil.getTextByMap(password);
+        username = methodsUtil.setValueWithMapKey(username);
+        password = methodsUtil.setValueWithMapKey(password);
         if (!username.equals("") && !password.equals("")) {
             map.put("username", username);
             map.put("password", password);
         }
-        uri = methodsUtil.getTextByMap(uri);
+        uri = methodsUtil.setValueWithMapKey(uri);
         if (!uri.equals("")) {
             map.put("uri", uri);
         }
@@ -154,8 +152,8 @@ public class StepApiImplementation {
     @Step("<cookiesKey> <cookiesValue> cookies degerini <apiMapKey> e ekle")
     public void setCookies(String cookiesKey, String cookiesValue, String apiMapKey){
 
-        cookiesKey = methodsUtil.getTextByMap(cookiesKey);
-        cookiesValue = methodsUtil.getTextByMap(cookiesValue);
+        cookiesKey = methodsUtil.setValueWithMapKey(cookiesKey);
+        cookiesValue = methodsUtil.setValueWithMapKey(cookiesValue);
         logger.info("**Cookies** " + cookiesKey + " : " + cookiesValue);
         if (Driver.apiMap.get(apiMapKey).containsKey("cookies")){
 
@@ -171,7 +169,7 @@ public class StepApiImplementation {
     @Step("<cookiesKey> <cookiesValue> cookies degerini <apiMapKey> e ekle <ifCondition>")
     public void setCookies(String cookiesKey, String cookiesValue, String apiMapKey, String ifCondition) {
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             setCookies(cookiesKey, cookiesValue, apiMapKey);
         }
     }
@@ -179,8 +177,8 @@ public class StepApiImplementation {
     @SuppressWarnings("unchecked")
     private void setParamsCommon(String paramType, String paramKey, String paramValue, String apiMapKey){
 
-        paramKey = methodsUtil.getTextByMap(paramKey);
-        paramValue = methodsUtil.getTextByMap(paramValue);
+        paramKey = methodsUtil.setValueWithMapKey(paramKey);
+        paramValue = methodsUtil.setValueWithMapKey(paramValue);
         logger.info(paramKey + " " + paramValue);
         if (Driver.apiMap.get(apiMapKey).containsKey(paramType)){
 
@@ -202,7 +200,7 @@ public class StepApiImplementation {
     @Step("<paramKey> <paramValue> parametre degerini <apiMapKey> e ekle if <ifCondition>")
     public void setKeyParams(String paramKey, String paramValue, String apiMapKey, String ifCondition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))){
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))){
             setKeyParams(paramKey, paramValue, apiMapKey);
         }
     }
@@ -262,7 +260,6 @@ public class StepApiImplementation {
     public void setKeyBody(String body, String bodyType, String apiMapKey){
 
         if(bodyType.equals("String")){
-            body = methodsUtil.getTextByMap(body);
             body = methodsUtil.setValueWithMapKey(body);
         }
         Driver.apiMap.get(apiMapKey).put("body", body);
@@ -273,8 +270,8 @@ public class StepApiImplementation {
     @Step("<multipartKey> <multipartValue> multipart degerini <type> type ile <apiMapKey> e ekle")
     public void setMultipart(String multipartKey, String multipartValue, String type, String apiMapKey){
 
-        multipartKey = methodsUtil.getTextByMap(multipartKey);
-        multipartValue = methodsUtil.getTextByMap(multipartValue);
+        multipartKey = methodsUtil.setValueWithMapKey(multipartKey);
+        multipartValue = methodsUtil.setValueWithMapKey(multipartValue);
         logger.info(multipartKey + " " + multipartValue);
         HashMap<String, Object> map;
         if (Driver.apiMap.get(apiMapKey).containsKey("multipart")){
@@ -295,7 +292,6 @@ public class StepApiImplementation {
     @Step("<requestType> requestType ve <requestPath> i <apiMapKey> e ekle <requestPathType>")
     public void setKeyRequestType(String requestType, String requestPath, String apiMapKey, String requestPathType){
 
-        requestPath = methodsUtil.getTextByMap(requestPath);
         requestPath = methodsUtil.setValueWithMapKey(requestPath);
         logger.info(requestPath);
         Driver.apiMap.get(apiMapKey).put("requestType", requestType);
@@ -306,7 +302,7 @@ public class StepApiImplementation {
     @Step("<apiMapKey> api testi için istek at, log=<logActive> if <ifCondition>")
     public void sendRequest(String apiMapKey, boolean logActive, String ifCondition){
 
-        if(Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if(Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             sendRequest(apiMapKey, logActive);
         }else {
             logger.info("false durumu sebebiyle api isteği atılmadı");
@@ -317,7 +313,7 @@ public class StepApiImplementation {
     public void sendRequestWithLoop(String apiMapKey, int loopCountForStatusCode500, boolean logActive, String ifCondition){
 
         Response response;
-        if(Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if(Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             response = apiMethods.getResponse(Driver.apiMap.get(apiMapKey));
             for (int i = 0; i < loopCountForStatusCode500; i++) {
                 if (response.statusCode() >= 500){
@@ -342,7 +338,7 @@ public class StepApiImplementation {
     @Step("<apiMapKey> api testi statusCode değeri <statusCode> değerine eşit mi if <ifCondition>")
     public void statusCodeControl(String apiMapKey, String statusCode, String ifCondition){
 
-        if(Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if(Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             statusCodeControl(apiMapKey, statusCode);
         }
     }
@@ -468,8 +464,8 @@ public class StepApiImplementation {
     @Step("<number> sayısından rastgele <count> kadar sayıyı listele <mapKey> keyinde tut")
     public void getRamdomNumberList(String number, String count, String mapKey){
 
-        number = methodsUtil.getTextByMap(number);
-        count = methodsUtil.getTextByMap(count);
+        number = methodsUtil.setValueWithMapKey(number);
+        count = methodsUtil.setValueWithMapKey(count);
         List<Integer> integerList = methodsUtil.getRandomNumberList(Integer.parseInt(number), Integer.parseInt(count));
         Driver.TestMap.put(mapKey, integerList);
         Driver.TestMap.put("size_" + mapKey, integerList.size());
@@ -497,7 +493,7 @@ public class StepApiImplementation {
     @Step("<mapJsonObjectKeySuffix> json dizisi değerini <mapJsonArrayKey> e ekle <valueType> loop <number>")
     public void setJsonArrayWithJsonObjectLoop(String mapJsonObjectKeySuffix, String mapJsonArrayKey, String valueType, String number){
 
-        number = methodsUtil.getTextByMap(number);
+        number = methodsUtil.setValueWithMapKey(number);
         JsonArray jsonArray = new JsonArray();
         if (valueType.equals("JsonObject")) {
             for (int i = 0; i < Integer.parseInt(number); i++) {
@@ -550,7 +546,7 @@ public class StepApiImplementation {
     @Step("<jsonPath> json path <value> value <type> type ve <id> degerini <mapKey> keyinde tut <valueControlType> OrActive <OrActive> if <ifCondition>")
     public void setJsonPathMultipleValue(String jsonPath, String value, String type, String id, String mapKey, String valueControlType, boolean OrActive, String ifCondition){
 
-        if (Boolean.parseBoolean(methodsUtil.getTextByMap(ifCondition))) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             readJsonMethods.setJsonPathMultipleValue(jsonPath, value, type, id, mapKey, valueControlType, OrActive);
         }
     }
@@ -582,7 +578,7 @@ public class StepApiImplementation {
     public void writeJson(String jsonString, String fileLocation){
 
         String json = readJsonMethods.getJsonElementByMap(jsonString).toString();
-        fileLocation = methodsUtil.setValueWithMap(methodsUtil.getTextByMap(fileLocation));
+        fileLocation = methodsUtil.setValueWithMapKey(fileLocation);
         methodsUtil.writeJson(json, fileLocation,true,true,false);
         System.out.println("File Location: " + fileLocation);
     }

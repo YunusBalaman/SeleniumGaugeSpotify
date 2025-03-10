@@ -703,29 +703,18 @@ public class MethodsUtil {
         clipboard.setContents(stringSelection,null);
     }
 
-    public String setValueWithMap(String value){
+    private Matcher getMatcherCurlyBraces(String value){
 
-        Matcher matcher3 = Pattern.compile("\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}").matcher(value);
-        while (matcher3.find()){
-            String t = matcher3.group();
-            value = value.replace(t, Driver.TestMap
-                    .get(t.replace("{","").replace("}","")).toString());
-        }
-        return value;
-    }
-
-    private Matcher getMatcherKeyValue(String value){
-
-        return Pattern.compile("\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+KeyValue\\}").matcher(value);
+        return Pattern.compile("\\{\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}\\}").matcher(value);
     }
 
     public String setValueWithMapKey(String value, List<String> list){
 
-        Matcher matcher = getMatcherKeyValue(value);
+        Matcher matcher = getMatcherCurlyBraces(value);
         while (matcher.find()){
             String t = matcher.group();
-            value = value.replaceFirst(t.replace("{","\\{")
-                    .replace("}","\\}"), setValueWithMapKey(getTextByMap(list.get(0))));
+            value = value.replaceFirst(t.replace("{{","\\{\\{")
+                    .replace("}}","\\}\\}"), setValueWithMapKey(list.get(0)));
             list.remove(0);
         }
         return value;
@@ -733,22 +722,22 @@ public class MethodsUtil {
 
     public String setValueWithMapKey(String value){
 
-        Matcher matcher = getMatcherKeyValue(value);
+        Matcher matcher = getMatcherCurlyBraces(value);
         while (matcher.find()){
             String t = matcher.group();
-            value = value.replace(t, Driver.TestMap.get(t.replace("{","")
-                    .replace("}","")).toString());
+            value = value.replace(t, Driver.TestMap.get(t.replace("{{","")
+                    .replace("}}","")).toString());
         }
         return value;
     }
 
     public String setJsonWithMapKey(String value){
 
-        Matcher matcher = getMatcherKeyValue(value);
+        Matcher matcher = getMatcherCurlyBraces(value);
         while (matcher.find()){
             String t = matcher.group();
-            String mapValue = t.replace("{","").replace("}","");
-            t = mapValue.endsWith("0KeyValue") ? "\"" + t + "\"" : t;
+            String mapValue = t.replace("{{","").replace("}}","");
+            t = mapValue.endsWith("String") ? "\"" + t + "\"" : t;
             value = value.replace(t, Driver.TestMap.get(mapValue).toString());
         }
         return value;
@@ -1091,22 +1080,6 @@ public class MethodsUtil {
         } catch (IOException | WriterException e) {
             logger.error(getStackTraceLog(e));
         }
-    }
-
-    public String getTextMap(String text){
-
-        Object value = Driver.TestMap.get(text);
-        text = value != null ? value.toString() : null;
-        return text;
-    }
-
-    public String getTextByMap(String text){
-
-        if (text.endsWith("KeyValue")) {
-            Object value = Driver.TestMap.get(text);
-            text = value != null ? value.toString() : null;
-        }
-        return text;
     }
 
     public String stringTrim(String value, String trimCondition){

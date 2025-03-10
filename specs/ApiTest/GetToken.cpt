@@ -10,5 +10,4 @@
 * "accessTokenApi" api testi için istek at "2" status code 500, log="false" if "true"
 * "accessTokenApi" api testi statusCode değeri "200" değerine eşit mi
 * "accessTokenApi" json üzerindeki "access_token" json yolunu oku "String" tipindeki degeri "token" keyinde tut
-* "token" mapte tutulan degeri "tokenKeyValue" keyinde tut
-* "token" keyinde tutulan değeri log olarak ekle
+* "{{token}}" log olarak ekle

@@ -9,7 +9,7 @@ tags:apiTest
 * "getProjects" api testi için map key olustur
 * "https://api.spotify.com" baseUri ı "getProjects" e ekle
 * "JSON" contentType degerini "getProjects" e ekle
-* "Authorization" "Bearer {tokenKeyValue}" header degerini "getProjects" e ekle
+* "Authorization" "Bearer {{token}}" header degerini "getProjects" e ekle
  "getProjects" için bearer token ekle
 Authorization
 * "get" requestType ve "/v1/me" i "getProjects" e ekle "String"

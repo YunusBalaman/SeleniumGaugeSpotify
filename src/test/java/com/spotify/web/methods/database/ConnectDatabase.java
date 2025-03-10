@@ -27,10 +27,10 @@ public class ConnectDatabase {
 
     public Connection connectDb(String database, String databaseName, String username, String password, String ip, String port){
 
-        username = methodsUtil.getTextByMap(username);
-        password = methodsUtil.getTextByMap(password);
-        ip = methodsUtil.getTextByMap(ip);
-        port = methodsUtil.getTextByMap(port);
+        username = methodsUtil.setValueWithMapKey(username);
+        password = methodsUtil.setValueWithMapKey(password);
+        ip = methodsUtil.setValueWithMapKey(ip);
+        port = methodsUtil.setValueWithMapKey(port);
         Properties properties = new Properties();
         if (!username.isEmpty()) {
             properties.put("user", username);
