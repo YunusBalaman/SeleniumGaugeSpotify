@@ -724,7 +724,7 @@ public class MethodsUtil {
         Matcher matcher = getMatcherKeyValue(value);
         while (matcher.find()){
             String t = matcher.group();
-            value = value.replaceFirst(t.replace("{{","\\{")
+            value = value.replaceFirst(t.replace("{","\\{")
                     .replace("}","\\}"), setValueWithMapKey(getTextByMap(list.get(0))));
             list.remove(0);
         }

@@ -578,29 +578,6 @@ public class StepApiImplementation {
         getMultipleListValue(jsonMapKey, controlJsonPathKey, jsonPathKey, mapKeySuffix,false,false);
     }
 
-    @Step("<apiMapKey> json listesi üzerinden <controlJsonPathKey> path üzerindeki string değerler arasında <key> var mı kontrol et")
-    public void checkStringInJsonArray(String apiMapKey, String controlJsonPathKey, String key){
-        JsonArray jsonArray = readJsonMethods.getJsonElementByMap(apiMapKey).getAsJsonArray();
-        boolean flag = false;
-        String description;
-        for(JsonElement jsonElement: jsonArray){
-            if(controlJsonPathKey.equals("")){
-                description = jsonElement.getAsString();
-            }
-            else{
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                description = jsonObject.get(controlJsonPathKey).getAsString();
-            }
-            logger.info(description);
-            if(description.equals(key)){
-                flag = true;
-                break;
-            }
-        }
-        logger.info(flag);
-        assertTrue(flag);
-    }
-
     @Step("<jsonString> json textini <fileLocation> dosya yoluna yaz")
     public void writeJson(String jsonString, String fileLocation){
 
