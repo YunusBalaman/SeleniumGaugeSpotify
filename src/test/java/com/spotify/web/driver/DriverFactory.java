@@ -53,8 +53,8 @@ public class DriverFactory {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions options = new ChromeOptions();
-       // options.addArguments("--disable-blink-features");
-       // options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("--disable-blink-features");
+        options.addArguments("--disable-blink-features=AutomationControlled");
        // options.addArguments("disable-extensions");
         options.addArguments("disable-translate");
         options.addArguments("disable-plugins");

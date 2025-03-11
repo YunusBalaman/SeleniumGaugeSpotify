@@ -1,27 +1,33 @@
 
 # Login sayfası kontrol edilir
 https://accounts.spotify.com/tr/login
-* Şu anki url "https://accounts.spotify.com{{urlLanguageSuffix}}/login" ile "startWith" durumunu sağlıyor mu "20"
+ Şu anki url "https://accounts.spotify.com{{urlLanguageSuffix}}/login" ile "startWith" durumunu sağlıyor mu "20"
+* Şu anki url "https://accounts.spotify.com" ile "startWith" durumunu sağlıyor mu "20"
+* Şu anki url "/login" ile "contain" durumunu sağlıyor mu "20"
 * "googleLogin_Login" elementinin görünür olması kontrol edilir
 * "facebookLogin_Login" elementinin görünür olması kontrol edilir
 * "appleLogin_Login" elementinin görünür olması kontrol edilir
 * "username_Login" elementinin görünür olması kontrol edilir
-* "sigIn_Login" elementinin görünür olması kontrol edilir
-* "sigIn_Login" elementinin text değerini "loginButtonText" keyinde tut "true"
-* "{{loginButtonText}}" log olarak ekle
-* "password_Login" elementinin görünür olması kontrol edilir
-* "showPassword_Login" elementinin görünür olması kontrol edilir
-* "resetPassword_Login" elementinin görünür olması kontrol edilir
-* "signUp_Login" elementinin görünür olması kontrol edilir
+* "signIn_Login" elementinin görünür olması kontrol edilir
+* "signIn_Login" elementinin text değerini "loginButtonText" keyinde tut "true"
+* "{{spotifyLLogIn}}" expectedValue ile "{{loginButtonText}}" actualValue "equal" durumunu "loginButtonTextCondition" keyinde tut
+* "{{spotifyLContinue}}" expectedValue ile "{{loginButtonText}}" actualValue "equal" durumunu "loginButtonTextContinueCondition" keyinde tut
+ "{{loginButtonText}}" log olarak ekle
+* "password_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextCondition}}"
+* "showPassword_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextCondition}}"
+* "resetPassword_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextCondition}}"
+* "signUp_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextCondition}}"
 
 # <username> Kullanıcı adi ve <password> şifresiyle giriş yapılır
 * "username_Login" elementinin tıklanabilir olması kontrol edilir
-* "password_Login" elementinin tıklanabilir olması kontrol edilir
-* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
 * "username_Login" elementine <username> değerini yaz
+* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* "signIn_Login" elementine tıkla if "{{loginButtonTextContinueCondition}}"
+Devam butonu çıkınca kod ile doğrulama istiyor...
+* "password_Login" elementinin tıklanabilir olması kontrol edilir
 * "password_Login" elementine <password> değerini yaz
 * "signIn_Login" elementinin tıklanabilir olması kontrol edilir
-* "signIn_Login" elementine tıkla
+* "signIn_Login" elementine tıkla if "{{loginButtonTextCondition}}"
 
 https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F
-https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F
+https://accounts.spotify.com/en-GB/login?continue=https%3A%2F%2Fopen.spotify.com%2F

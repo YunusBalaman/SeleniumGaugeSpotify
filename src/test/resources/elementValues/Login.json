@@ -30,7 +30,7 @@
     "type": "css"
   },
   {
-    "key": "sigIn_Login",
+    "key": "signIn_Login",
     "value": "login-button",
     "type": "id"
   },

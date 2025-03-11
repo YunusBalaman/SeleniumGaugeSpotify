@@ -98,6 +98,15 @@ public class StepImplementation {
         methods.sendKeys(methods.getBy(key), text);
     }
 
+    @Step("<key> elementine <text> değerini yaz if <ifCondition>")
+    public void sendKeysElement(String key, String text, String ifCondition) {
+
+        if(Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
+            text = methodsUtil.setValueWithMapKey(text);
+            methods.sendKeys(methods.getBy(key), text);
+        }
+    }
+
     @Step("<key> elementine <text> keyini yolla")
     public void sendKeysElementWithKeys(String key, String text) {
 
@@ -277,6 +286,13 @@ public class StepImplementation {
     public void checkElementInVisible(String key, long timeout) {
 
         assertTrue(methods.isElementInVisible(methods.getBy(key), timeout),"elementi halen görünür");
+    }
+
+    @Step("<key> elementinin tıklanabilir olması kontrol edilir if <ifCondition>")
+    public void checkElementClickable(String key, String ifCondition) {
+
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition)))
+            checkElementClickable(key, Driver.waitElementTimeout);
     }
 
     @Step("<key> elementinin tıklanabilir olması kontrol edilir")

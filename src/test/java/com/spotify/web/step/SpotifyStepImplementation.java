@@ -31,12 +31,17 @@ public class SpotifyStepImplementation {
         String path = methodsUtil.getResourceTargetPath("languages");
         switch(language){
             case "en":
+            case "English":
+                language = "en";
+                break;
             case "tr":
-                resourceBundle = ReadProperties.readPropDir(path + Driver.slash + "spotify" + language.toUpperCase() + ".properties");
+            case "Türkçe":
+                language = "tr";
                 break;
             default:
                 Assertions.fail("Hata " + path);
         }
+        resourceBundle = ReadProperties.readPropDir(path + Driver.slash + "spotify" + language.toUpperCase() + ".properties");
         ResourceBundle finalResourceBundle = resourceBundle;
         resourceBundle.keySet().forEach(key -> Driver.TestMap.put("spotifyL" + key, finalResourceBundle.getString(key)));
     }

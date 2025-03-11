@@ -1,13 +1,14 @@
 
 # <language> Spotify Language Properties Process
 * <language> degerini "language" keyinde tut
-* "" degerini "urlLanguageSuffix" keyinde tut
-* "en" expectedValue ile "{{language}}" actualValue "equal" durumunu "languageCondition" keyinde tut
-* "{{languageCondition}}" log olarak ekle
-* "!{{languageCondition}}" scriptini kullanarak matematiksel işlemi gerçekleştir "languageConditionReverse" keyinde tut
-* "{{languageConditionReverse}}" log olarak ekle
-* "/{{language}}" degerini "urlLanguageSuffix" keyinde tut if "{{languageConditionReverse}}"
+ "" degerini "urlLanguageSuffix" keyinde tut
+ "en" expectedValue ile "{{language}}" actualValue "equal" durumunu "languageCondition" keyinde tut
+ "{{languageCondition}}" log olarak ekle
+ "!{{languageCondition}}" scriptini kullanarak matematiksel işlemi gerçekleştir "languageConditionReverse" keyinde tut
+ "{{languageConditionReverse}}" log olarak ekle
+ "/{{language}}" degerini "urlLanguageSuffix" keyinde tut if "{{languageConditionReverse}}"
 * "{{language}}" Spotify Language Properties
+* "{{spotifyLLoginUrlSuffix}}" degerini "urlLanguageSuffix" keyinde tut
 
 # Çerezleri Kabul et
 * "onetrust_Banner_HomePage" elementinin görünür olması kontrol edilir
@@ -25,7 +26,7 @@
 * "close_FreeSpotifyAccountBanner_HomePage" elementinin tıklanabilir olması kontrol edilir
 * "close_FreeSpotifyAccountBanner_HomePage" elementine tıkla
 
-# Ücretsiz Spotify Kayıt ol Bannerını varsa kapat
+# Ücretsiz Spotify Kayıt ol Bannerı varsa kapat
 * "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_HomePage" elementinin var olup olmadığı durumunu "isExistStartFreeSpotifyAccountTitle" keyinde tut "2"
 * "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
 * "spotifyLogin_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
@@ -35,8 +36,13 @@
 # Homepage sayfasında olunduğu kontrol edilir
 * waitPageLoadCompleteJs
 * waitPageScrollingCompleteJs
-* Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
+* Şu anki url "https://open.spotify.com/" ile "startWith" durumunu sağlıyor mu "20"
 * "languageButton_HomePage" elementinin görünür olması kontrol edilir
+* "languageButton_HomePage" elementinin text değerini "languageButtonText" keyinde tut "true"
+* "{{languageButtonText}}" log olarak ekle
+* "{{languageButtonText}}" Spotify Language Properties
+* "{{spotifyLLoginUrlSuffix}}" degerini "urlLanguageSuffix" keyinde tut
+* Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
 * "signup_HomePage" elementinin görünür olması kontrol edilir
 * "loginButton_HomePage" elementinin görünür olması kontrol edilir
 

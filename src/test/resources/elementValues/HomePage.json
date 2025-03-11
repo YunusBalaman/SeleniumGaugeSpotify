@@ -33,7 +33,7 @@
   },
   {
     "key": "spotifyLogin_FreeSpotifyAccountBanner_HomePage",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//p/span[text()='{{spotifyLAlreadyHaveAnAccount}}']/following-sibling::a[text()='{{spotifyLLogIn}}']",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//p/span[text()='{{spotifyLAlreadyHaveAnAccount}}']/following-sibling::a[text()='{{spotifyLLogIn_Banner}}']",
     "type": "xpath",
     "keyValueChanger": true
   },
