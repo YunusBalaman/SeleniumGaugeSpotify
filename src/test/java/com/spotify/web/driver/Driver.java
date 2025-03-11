@@ -24,7 +24,7 @@ public class Driver {
     public static String osName = FindOS.getOperationSystemName();
     public static String osNameSpecific = System.getProperty("os.name");
     public static String browser = "chrome";//chrome edge firefox safari
-    public static String url = "https://open.spotify.com/intl-tr";
+    public static String url = "https://open.spotify.com/";
     public static String baseUri = "";
     public static List<String> baseUriList;
     public static HashMap<String, Object> TestMap;

@@ -53,11 +53,6 @@ public class DriverFactory {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions options = new ChromeOptions();
-        /**
-        Map<String, Object> prefs = new ConcurrentHashMap<>();
-        prefs.put("intl.accept_languages", "en-GB");
-        options.setExperimentalOption("prefs", prefs);
-        */
        // options.addArguments("--disable-blink-features");
        // options.addArguments("--disable-blink-features=AutomationControlled");
        // options.addArguments("disable-extensions");
@@ -78,6 +73,7 @@ public class DriverFactory {
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
+       // prefs.put("intl.accept_languages", "en-GB");
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--remote-allow-origins=*");
         //options.addArguments("--headless=new");
@@ -86,14 +82,6 @@ public class DriverFactory {
         //options.addArguments("--incognito");
         //   options.addArguments("--remote-debugging-port=9222");
         //   options.addArguments("--remote-debugging-address=127.0.0.1");
-        /**
-         chrome_options.add_experimental_option('prefs', {
-         'credentials_enable_service': False,
-         'profile': {
-         'password_manager_enabled': False
-         }
-         })
-         */
         options = options.merge(capabilities);
         return new ChromeDriver(options);
     }

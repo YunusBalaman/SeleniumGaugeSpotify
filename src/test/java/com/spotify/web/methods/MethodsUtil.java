@@ -703,14 +703,14 @@ public class MethodsUtil {
         clipboard.setContents(stringSelection,null);
     }
 
-    private Matcher getMatcherCurlyBraces(String value){
+    private Matcher getMatcherCurlyBrackets(String value){
 
         return Pattern.compile("\\{\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}\\}").matcher(value);
     }
 
     public String setValueWithMapKey(String value, List<String> list){
 
-        Matcher matcher = getMatcherCurlyBraces(value);
+        Matcher matcher = getMatcherCurlyBrackets(value);
         while (matcher.find()){
             String t = matcher.group();
             value = value.replaceFirst(t.replace("{{","\\{\\{")
@@ -722,7 +722,7 @@ public class MethodsUtil {
 
     public String setValueWithMapKey(String value){
 
-        Matcher matcher = getMatcherCurlyBraces(value);
+        Matcher matcher = getMatcherCurlyBrackets(value);
         while (matcher.find()){
             String t = matcher.group();
             value = value.replace(t, Driver.TestMap.get(t.replace("{{","")
@@ -733,7 +733,7 @@ public class MethodsUtil {
 
     public String setJsonWithMapKey(String value){
 
-        Matcher matcher = getMatcherCurlyBraces(value);
+        Matcher matcher = getMatcherCurlyBrackets(value);
         while (matcher.find()){
             String t = matcher.group();
             String mapValue = t.replace("{{","").replace("}}","");

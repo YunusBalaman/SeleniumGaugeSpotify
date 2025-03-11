@@ -1,27 +1,27 @@
 [
   {
-    "key": "5",
+    "key": "onetrust_Banner",
     "value": "onetrust-banner-sdk",
-    "type": ""
+    "type": "id"
   },
   {
-    "key": "5",
+    "key": "accept_Onetrust_Banner",
     "value": "onetrust-accept-btn-handler",
-    "type": ""
+    "type": "id"
   },
   {
-    "key": "5",
+    "key": "details_Onetrust_Banner",
     "value": "onetrust-pc-btn-handler",
+    "type": "id"
+  },
+  {
+    "key": "5",
+    "value": "//div[@data-testid='root']//div[@role='presentation']//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']",
     "type": ""
   },
   {
     "key": "5",
-    "value": "//div[@data-testid='root']//div[@role='presentation']//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']",
-    "type": ""
-  },
-  {
-    "key": "5",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']]//button[./*[text()='Ücretsiz kaydol']]",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//button[./*[text()='{{spotifyLSingUpButtonInStartFreeSpotifyAccount}}']]",
     "type": ""
   },
   {
@@ -31,37 +31,37 @@
   },
   {
     "key": "5",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']]//p/span[text()='Zaten hesabın var mı?']/following-sibling::a[text()='Oturum aç']",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//p/span[text()='{{spotifyLAlreadyHaveAnAccount}}']/following-sibling::a[text()='{{spotifyLLogIn}}']",
     "type": ""
   },
   {
     "key": "5",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='Ücretsiz bir Spotify hesabıyla dinlemeye başla']]//button[text()='Kapat']",
+    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//button[text()='{{spotifyLClose}}']",
     "type": ""
   },
   {
     "key": "5",
-    "value": "",
+    "value": "button[data-testid='language-selection-button']",
+    "type": "css"
+  },
+  {
+    "key": "5",
+    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div//button[@data-testid='close-button']",
     "type": ""
   },
   {
     "key": "5",
-    "value": "",
+    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div[.//button[@data-testid='close-button']]/following-sibling::div[@style=\"--header-height: 92px;\"]",
     "type": ""
   },
   {
     "key": "5",
-    "value": "",
+    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div[.//button[@data-testid='close-button']]/following-sibling::div[@style=\"--header-height: 92px;\"]/button[@id='en']",
     "type": ""
   },
   {
     "key": "5",
-    "value": "",
-    "type": ""
-  },
-  {
-    "key": "5",
-    "value": "",
+    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div[.//button[@data-testid='close-button']]/following-sibling::div[not(@style=\"--header-height: 0px;\")]/a[@id='tr']",
     "type": ""
   },
   {
