@@ -1,39 +1,32 @@
 package com.spotify.web.step;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.spotify.web.driver.Driver;
 import com.spotify.web.methods.api.ApiMethods;
 import com.spotify.web.methods.MethodsUtil;
-import com.spotify.web.methods.api.ReadJsonMethods;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StepApiImplementation {
 
     private static final Logger logger = LogManager.getLogger(StepApiImplementation.class);
     MethodsUtil methodsUtil;
     ApiMethods apiMethods;
-    ReadJsonMethods readJsonMethods;
 
     public StepApiImplementation(){
 
         methodsUtil = new MethodsUtil();
         apiMethods = new ApiMethods();
-        readJsonMethods = new ReadJsonMethods();
     }
 
     @Step("<apiMapKey> api testi için map key olustur")
@@ -367,7 +360,7 @@ public class StepApiImplementation {
     @Step("<apiMapKey> api testi statusCode değeri <statusCode> değerine eşit mi")
     public void statusCodeControl(String apiMapKey, String statusCode){
 
-        statusCode = statusCode.endsWith("KeyValue") ? Driver.TestMap.get(statusCode).toString() : statusCode;
+        statusCode = methodsUtil.setValueWithMapKey(statusCode);
         Response response = (Response) Driver.apiMap.get(apiMapKey).get("response");
         assertEquals(Integer.parseInt(statusCode), response.statusCode());
     }
@@ -458,136 +451,6 @@ public class StepApiImplementation {
     public void clearApiMap(){
 
         Driver.apiMap.clear();
-        logger.info("" + Driver.apiMap.size());
     }
 
-    @Step("<number> sayısından rastgele <count> kadar sayıyı listele <mapKey> keyinde tut")
-    public void getRamdomNumberList(String number, String count, String mapKey){
-
-        number = methodsUtil.setValueWithMapKey(number);
-        count = methodsUtil.setValueWithMapKey(count);
-        List<Integer> integerList = methodsUtil.getRandomNumberList(Integer.parseInt(number), Integer.parseInt(count));
-        Driver.TestMap.put(mapKey, integerList);
-        Driver.TestMap.put("size_" + mapKey, integerList.size());
-    }
-
-    @Step("<property> <valueListMapKey> json objesi değeri olarak <mapJsonObjectKeySuffix> e ekle <valueType> loop")
-    public void addJsonObjectLoopForArray(String property, String valueListMapKey, String mapJsonObjectKeySuffix, String valueType){
-
-        boolean trimActive = Driver.TestMap.containsKey("trimOptionsKeyValue")
-                && Driver.TestMap.get("trimOptionsKeyValue").toString().equals("true");
-        List<String> list = (List<String>) Driver.TestMap.get(valueListMapKey);
-        for(int i = 0; i < list.size(); i++) {
-            String value = trimActive ? list.get(i).trim() : list.get(i);
-            if (Driver.TestMap.containsKey(i + mapJsonObjectKeySuffix)) {
-                JsonObject jsonObject = (JsonObject) Driver.TestMap.get(i + mapJsonObjectKeySuffix);
-                methodsUtil.setStepJsonObjectValue(jsonObject, property, value, valueType);
-            } else {
-                JsonObject jsonObject = new JsonObject();
-                methodsUtil.setStepJsonObjectValue(jsonObject, property, value, valueType);
-                Driver.TestMap.put(i + mapJsonObjectKeySuffix, jsonObject);
-            }
-        }
-    }
-
-    @Step("<mapJsonObjectKeySuffix> json dizisi değerini <mapJsonArrayKey> e ekle <valueType> loop <number>")
-    public void setJsonArrayWithJsonObjectLoop(String mapJsonObjectKeySuffix, String mapJsonArrayKey, String valueType, String number){
-
-        number = methodsUtil.setValueWithMapKey(number);
-        JsonArray jsonArray = new JsonArray();
-        if (valueType.equals("JsonObject")) {
-            for (int i = 0; i < Integer.parseInt(number); i++) {
-                methodsUtil.setStepJsonArrayValue(jsonArray,i + mapJsonObjectKeySuffix,"JsonObject");
-                Driver.TestMap.put(mapJsonArrayKey, jsonArray);
-                Driver.TestMap.remove(i + mapJsonObjectKeySuffix);
-            }
-        }else {
-            List<String> list = (List<String>) Driver.TestMap.get(mapJsonObjectKeySuffix);
-            for (int i = 0; i < Integer.parseInt(number); i++) {
-                methodsUtil.setStepJsonArrayValue(jsonArray, list.get(i), valueType);
-                Driver.TestMap.put(mapJsonArrayKey, jsonArray);
-            }
-        }
-    }
-
-    @Step("<jsonMapKey> json üzerindeki <jsonPath> json yolunu oku <type> tipindeki degeri <mapKey> keyinde tut <valueTrim>")
-    public void readJsonPath(String jsonMapKey, String jsonPath, String type, String mapKey, boolean valueTrim){
-
-        readJsonMethods.setValueTrim(valueTrim);
-        jsonPath = methodsUtil.setValueWithMapKey(jsonPath);
-        readJsonMethods.readJsonPath(readJsonMethods.getJsonElementByMap(jsonMapKey)
-                , readJsonMethods.getJsonPathAsList(jsonPath,"|?"), type, mapKey);
-    }
-
-    @Step("<jsonMapKey> json üzerindeki <jsonPath> json yolunu oku <type> tipindeki degeri <mapKey> keyinde tut")
-    public void readJsonPath(String jsonMapKey, String jsonPath, String type, String mapKey){
-
-        readJsonPath(jsonMapKey, jsonPath, type, mapKey,false);
-    }
-
-    @Step("<jsonPath> json path <value> value <type> type ve <id> degerini <mapKey> keyinde tut")
-    public void setJsonPathMultipleValue(String jsonPath, String value, String type, String id, String mapKey){
-
-        setJsonPathMultipleValue(jsonPath, value, type, id, mapKey,"equal",false);
-    }
-
-    @Step("<jsonPath> json path <value> value <type> type ve <id> degerini <mapKey> keyinde tut <valueControlType>")
-    public void setJsonPathMultipleValue(String jsonPath, String value, String type, String id, String mapKey, String valueControlType){
-
-        setJsonPathMultipleValue(jsonPath, value, type, id, mapKey, valueControlType,false);
-    }
-
-    @Step("<jsonPath> json path <value> value <type> type ve <id> degerini <mapKey> keyinde tut <valueControlType> OrActive <OrActive>")
-    public void setJsonPathMultipleValue(String jsonPath, String value, String type, String id, String mapKey, String valueControlType, boolean OrActive){
-
-        readJsonMethods.setJsonPathMultipleValue(jsonPath, value, type, id, mapKey, valueControlType, OrActive);
-    }
-
-    @Step("<jsonPath> json path <value> value <type> type ve <id> degerini <mapKey> keyinde tut <valueControlType> OrActive <OrActive> if <ifCondition>")
-    public void setJsonPathMultipleValue(String jsonPath, String value, String type, String id, String mapKey, String valueControlType, boolean OrActive, String ifCondition){
-
-        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
-            readJsonMethods.setJsonPathMultipleValue(jsonPath, value, type, id, mapKey, valueControlType, OrActive);
-        }
-    }
-
-    @Step("<jsonMapKey> json üzerinden <jsonPathKey> json degerlerini al ve <mapKeySuffix> keyinde tut <keyTrim> <valueTrim>")
-    public void getMultipleValue(String jsonMapKey, String jsonPathKey, String mapKeySuffix, boolean keyTrim, boolean valueTrim){
-
-        readJsonMethods.setKeyTrim(keyTrim);
-        readJsonMethods.setValueTrim(valueTrim);
-        readJsonMethods.getMultipleValue(jsonPathKey, readJsonMethods.getJsonElementByMap(jsonMapKey),"|?", mapKeySuffix);
-    }
-
-    @Step("<jsonMapKey> json listesi üzerinden <controlJsonPathKey> varsa degerleri kontrol et <jsonPathKey> json degerlerini listele ve <mapKeySuffix> keyinde tut <keyTrim> <valueTrim>")
-    public void getMultipleListValue(String jsonMapKey, String controlJsonPathKey, String jsonPathKey, String mapKeySuffix, boolean keyTrim, boolean valueTrim){
-
-        readJsonMethods.setKeyTrim(keyTrim);
-        readJsonMethods.setValueTrim(valueTrim);
-        readJsonMethods.getMultipleListValue(controlJsonPathKey, jsonPathKey
-                , readJsonMethods.getJsonElementByMap(jsonMapKey),"|?", mapKeySuffix);
-    }
-
-    @Step("<jsonMapKey> json listesi üzerinden <controlJsonPathKey> varsa degerleri kontrol et <jsonPathKey> json degerlerini listele ve <mapKeySuffix> keyinde tut")
-    public void getMultipleListValue(String jsonMapKey, String controlJsonPathKey, String jsonPathKey, String mapKeySuffix){
-
-        getMultipleListValue(jsonMapKey, controlJsonPathKey, jsonPathKey, mapKeySuffix,false,false);
-    }
-
-    @Step("<jsonString> json textini <fileLocation> dosya yoluna yaz")
-    public void writeJson(String jsonString, String fileLocation){
-
-        String json = readJsonMethods.getJsonElementByMap(jsonString).toString();
-        fileLocation = methodsUtil.setValueWithMapKey(fileLocation);
-        methodsUtil.writeJson(json, fileLocation,true,true,false);
-        System.out.println("File Location: " + fileLocation);
-    }
-
-    @Step("<mapJsonKey> json liste sayısını <mapKey> degerinde tut")
-    public void getJsonListSize(String mapJsonKey, String mapKey){
-
-        int i = readJsonMethods.getJsonListSize((JsonArray) Driver.TestMap.get(mapJsonKey));
-        Driver.TestMap.put(mapKey,i);
-        logger.info("JsonListSize: " + i);
-    }
 }

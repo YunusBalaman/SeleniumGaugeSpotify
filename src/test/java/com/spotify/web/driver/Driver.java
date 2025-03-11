@@ -37,7 +37,9 @@ public class Driver {
     public static List<String> elementEnviroments = new ArrayList<>();
     public static ElementInfo lastElement;
     public static HashMap<String,Object> DatabaseMap;
-    public static String databaseConnectionMapKeyName = "connectionMapKeyListKeyValue";
+    public static long waitElementTimeout = 20;
+    public static long pollingEveryValue = 250;
+    public static String databaseConnectionMapKeyName = "connectionMapKeyList";
 
     @BeforeSuite
     public void beforeSuite(ExecutionContext executionContext){
@@ -58,7 +60,7 @@ public class Driver {
         DatabaseMap = new HashMap<String, Object>();
         System.setProperty("polyglot.engine.WarnInterpreterOnly", "false");
         // System.setProperty("webdriver.http.factory", "jdk-http-client");
-        Driver.TestMap.put("baseUriKeyValue", baseUri);
+        Driver.TestMap.put("baseUri", baseUri);
     }
 
     @BeforeSpec

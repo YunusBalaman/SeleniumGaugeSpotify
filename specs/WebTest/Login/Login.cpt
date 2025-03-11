@@ -1,0 +1,27 @@
+
+# Login sayfası kontrol edilir
+https://accounts.spotify.com/tr/login
+* Şu anki url "https://accounts.spotify.com{{urlLanguageSuffix}}/login" ile "startWith" durumunu sağlıyor mu "20"
+* "googleLogin_Login" elementinin görünür olması kontrol edilir
+* "facebookLogin_Login" elementinin görünür olması kontrol edilir
+* "appleLogin_Login" elementinin görünür olması kontrol edilir
+* "username_Login" elementinin görünür olması kontrol edilir
+* "sigIn_Login" elementinin görünür olması kontrol edilir
+* "sigIn_Login" elementinin text değerini "loginButtonText" keyinde tut "true"
+* "{{loginButtonText}}" log olarak ekle
+* "password_Login" elementinin görünür olması kontrol edilir
+* "showPassword_Login" elementinin görünür olması kontrol edilir
+* "resetPassword_Login" elementinin görünür olması kontrol edilir
+* "signUp_Login" elementinin görünür olması kontrol edilir
+
+# <username> Kullanıcı adi ve <password> şifresiyle giriş yapılır
+* "username_Login" elementinin tıklanabilir olması kontrol edilir
+* "password_Login" elementinin tıklanabilir olması kontrol edilir
+* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* "username_Login" elementine <username> değerini yaz
+* "password_Login" elementine <password> değerini yaz
+* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* "signIn_Login" elementine tıkla
+
+https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F
+https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F

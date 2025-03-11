@@ -1,0 +1,102 @@
+[
+  {
+    "key": "googleLogin_Login",
+    "value": "button[data-testid=\"google-login\"]",
+    "type": "css"
+  },
+  {
+    "key": "facebookLogin_Login",
+    "value": "button[data-testid=\"facebook-login\"]",
+    "type": "css"
+  },
+  {
+    "key": "appleLogin_Login",
+    "value": "button[data-testid=\"apple-login\"]",
+    "type": "css"
+  },
+  {
+    "key": "username_Login",
+    "value": "login-username",
+    "type": "id"
+  },
+  {
+    "key": "password_Login",
+    "value": "login-password",
+    "type": "id"
+  },
+  {
+    "key": "showPassword_Login",
+    "value": "button[data-testid=\"login-password-preview\"]",
+    "type": "css"
+  },
+  {
+    "key": "sigIn_Login",
+    "value": "login-button",
+    "type": "id"
+  },
+  {
+    "key": "resetPassword_Login",
+    "value": "reset-password-link",
+    "type": "id"
+  },
+  {
+    "key": "signUp_Login",
+    "value": "sign-up-link",
+    "type": "id"
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  },
+  {
+    "key": "5",
+    "value": "",
+    "type": ""
+  }
+]

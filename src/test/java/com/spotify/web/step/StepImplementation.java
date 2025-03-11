@@ -94,14 +94,14 @@ public class StepImplementation {
     @Step("<key> elementine <text> değerini yaz")
     public void sendKeysElement(String key, String text) {
 
-        text = text.endsWith("KeyValue") ? Driver.TestMap.get(text).toString() : text;
+        text = methodsUtil.setValueWithMapKey(text);
         methods.sendKeys(methods.getBy(key), text);
     }
 
     @Step("<key> elementine <text> keyini yolla")
     public void sendKeysElementWithKeys(String key, String text) {
 
-        text = text.endsWith("KeyValue") ? Driver.TestMap.get(text).toString() : text;
+        text = methodsUtil.setValueWithMapKey(text);
         methods.sendKeysWithKeys(methods.getBy(key), text);
     }
 
@@ -194,10 +194,17 @@ public class StepImplementation {
         methods.clearElementWithBackSpace(methods.getBy(key), value);
     }
 
+    @Step("<key> elementinin görünür olması kontrol edilir if <ifCondition>")
+    public void checkElementVisible(String key, String ifCondition) {
+
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition)))
+            checkElementVisible(key, Driver.waitElementTimeout);
+    }
+
     @Step("<key> elementinin görünür olması kontrol edilir")
     public void checkElementVisible(String key) {
 
-        checkElementVisible(key,30);
+        checkElementVisible(key, Driver.waitElementTimeout);
     }
 
     @Step("<key> elementinin enable olduğu kontrol edilir")
@@ -245,13 +252,13 @@ public class StepImplementation {
     @Step("<key> elementinin görünür olmadığı kontrol edilir")
     public void checkElementInVisible(String key) {
 
-        checkElementInVisible(key,30);
+        checkElementInVisible(key, Driver.waitElementTimeout);
     }
 
     @Step("<key> elementinin konumunu aldığı kontrol edilir")
     public void checkElementLocated(String key) {
 
-        checkElementLocated(key,30);
+        checkElementLocated(key, Driver.waitElementTimeout);
     }
 
     @Step("<key> elementinin konumunu aldığı kontrol edilir <timeout>")
@@ -275,7 +282,7 @@ public class StepImplementation {
     @Step("<key> elementinin tıklanabilir olması kontrol edilir")
     public void checkElementClickable(String key) {
 
-        checkElementClickable(key,30);
+        checkElementClickable(key, Driver.waitElementTimeout);
     }
 
     @Step("<key> elementinin tıklanabilir olması kontrol edilir <timeout>")

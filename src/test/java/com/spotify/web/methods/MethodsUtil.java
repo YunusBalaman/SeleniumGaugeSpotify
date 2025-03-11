@@ -82,11 +82,11 @@ public class MethodsUtil {
     public void setStepJsonObjectValue(JsonObject jsonObject, String property, String value, String valueType) {
 
         if(!(valueType.equals("JsonArray") || valueType.equals("JsonObject") || valueType.equals("JsonElement"))
-                && value.endsWith("KeyValue")){
-
+                && getMapKeyConditionCurlyBrackets(value)){
+            value = replaceCurlyBrackets(value);
             if (Driver.TestMap.containsKey(value)){
                 value = Driver.TestMap.get(value).toString();
-            } else if (value.endsWith("KeyValue")){
+            } else {
                 fail(value + " degeri TestMap te bulunamadı");
             }
         }
@@ -95,13 +95,13 @@ public class MethodsUtil {
             case "":
                 break;
             case "JsonArray":
-                jsonObject.add(property, (JsonArray) Driver.TestMap.get(value));
+                jsonObject.add(property, (JsonArray) Driver.TestMap.get(replaceCurlyBrackets(value)));
                 break;
             case "JsonObject":
-                jsonObject.add(property, (JsonObject) Driver.TestMap.get(value));
+                jsonObject.add(property, (JsonObject) Driver.TestMap.get(replaceCurlyBrackets(value)));
                 break;
             case "JsonElement":
-                jsonObject.add(property, (JsonElement) Driver.TestMap.get(value));
+                jsonObject.add(property, (JsonElement) Driver.TestMap.get(replaceCurlyBrackets(value)));
                 break;
             case "String":
                 jsonObject.addProperty(property, value);
@@ -152,22 +152,26 @@ public class MethodsUtil {
     public void setStepJsonArrayValue(JsonArray jsonArray, String value, String valueType) {
 
         if(!(valueType.equals("JsonArray") || valueType.equals("JsonObject") || valueType.equals("JsonElement"))
-                && value.endsWith("KeyValue")){
-
-            value = Driver.TestMap.get(value).toString();
+                && getMapKeyConditionCurlyBrackets(value)){
+            value = replaceCurlyBrackets(value);
+            if (Driver.TestMap.containsKey(value)){
+                value = Driver.TestMap.get(value).toString();
+            } else {
+                fail(value + " degeri TestMap te bulunamadı");
+            }
         }
-        String bigDecimal = value;
+        String bigDecimal = setValueWithMapKey(value);;
         switch (valueType) {
             case "":
                 break;
             case "JsonArray":
-                jsonArray.add((JsonArray) Driver.TestMap.get(value));
+                jsonArray.add((JsonArray) Driver.TestMap.get(replaceCurlyBrackets(value)));
                 break;
             case "JsonObject":
-                jsonArray.add((JsonObject) Driver.TestMap.get(value));
+                jsonArray.add((JsonObject) Driver.TestMap.get(replaceCurlyBrackets(value)));
                 break;
             case "JsonElement":
-                jsonArray.add((JsonElement) Driver.TestMap.get(value));
+                jsonArray.add((JsonElement) Driver.TestMap.get(replaceCurlyBrackets(value)));
                 break;
             case "String":
                 jsonArray.add(value);
@@ -220,14 +224,14 @@ public class MethodsUtil {
         String[] arrayValue = Splitter.on(splitValue).splitToList(newValues).toArray(new String[0]);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < arrayValue.length; i++){
-            list.add("data" + (i+1) + "KeyValue");
+            list.add("data" + (i+1));
         }
         char[] arrayTypes = types.toCharArray();
         String newValue = String.format(value, list.toArray(new String[0]));
         String a = "";
         for (int i=0; i < arrayValue.length; i++){
             a = arrayValue[i];
-            a = a.endsWith("KeyValue") ? Driver.TestMap.get(a).toString() : a;
+            a = setJsonWithMapKey(a);
             switch (arrayTypes[i]){
                 case 'S':
                     newValue = newValue.replace(list.get(i), a);
@@ -710,6 +714,16 @@ public class MethodsUtil {
         return Pattern.compile("\\{\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}\\}").matcher(value);
     }
 
+    private boolean getMapKeyConditionCurlyBrackets(String value){
+
+        return Pattern.matches("\\{\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}\\}", value);
+    }
+
+    private String replaceCurlyBrackets(String value){
+
+        return value.replace("{{","").replace("}}","");
+    }
+
     public String setValueWithMapKey(String value, List<String> list){
 
         Matcher matcher = getMatcherCurlyBrackets(value);
@@ -850,27 +864,6 @@ public class MethodsUtil {
                 fail("conditionValueControl geçersiz durum - " + condition);
         }
         return result;
-    }
-
-    public List<Integer> getRandomNumberList(int number, int count){
-
-        List<Integer> list = new ArrayList<>();
-        List<Integer> numberList = new ArrayList<>();
-        for (int i = 0; i < number; i++) {
-            list.add(i);
-        }
-        int value;
-        if (count == 0 || count > number){
-            return list;
-        }else if (count < 0){
-            fail("count 0 dan küçük olamaz!");
-        }
-        for (int j = 0; j < count; j++) {
-            value = randomNumber(number - j);
-            numberList.add(list.get(value));
-            list.remove(value);
-        }
-        return numberList;
     }
 
     public void getListSort(List<String> list, boolean asc, Locale locale){
@@ -1172,25 +1165,6 @@ public class MethodsUtil {
         return jsonObj.toString();
     }
 
-    public String getJsonValueWithMap(String mapKey){
-
-        String jsonString = mapKey;
-        if(Driver.apiMap.containsKey(mapKey)){
-            jsonString = ((Response)Driver.apiMap.get(mapKey).get("response")).asString();
-        }
-        if(mapKey.endsWith("KeyValue")){
-            jsonString = Driver.TestMap.get(mapKey).toString();
-            JsonElement element = JsonParser.parseString(jsonString);
-            if (element.isJsonArray()){
-                jsonString = element.getAsJsonArray().toString();
-            }
-            if (element.isJsonObject()){
-                jsonString = element.getAsJsonObject().toString();
-            }
-        }
-        return jsonString;
-    }
-
     public boolean urlFilter(String url){
 
         if (Driver.baseUriList.isEmpty())
@@ -1216,6 +1190,25 @@ public class MethodsUtil {
             throw new NullPointerException("File Directory Is Not Found!");
         }
         return resourcePath;
+    }
+
+    public String getJsonValueWithMap(String mapKey){
+
+        String jsonString = mapKey;
+        if (getMapKeyConditionCurlyBrackets(mapKey)){
+            jsonString = Driver.TestMap.get(replaceCurlyBrackets(mapKey)).toString();
+        }
+        if(Driver.apiMap.containsKey(jsonString)){
+            return ((Response)Driver.apiMap.get(jsonString).get("response")).asString();
+        }
+        JsonElement element = JsonParser.parseString(jsonString);
+        if (element.isJsonArray()){
+            jsonString = element.getAsJsonArray().toString();
+        }
+        if (element.isJsonObject()){
+            jsonString = element.getAsJsonObject().toString();
+        }
+        return jsonString;
     }
 
 }

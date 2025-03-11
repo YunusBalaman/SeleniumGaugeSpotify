@@ -1,46 +1,50 @@
 [
   {
-    "key": "onetrust_Banner",
+    "key": "onetrust_Banner_HomePage",
     "value": "onetrust-banner-sdk",
     "type": "id"
   },
   {
-    "key": "accept_Onetrust_Banner",
+    "key": "accept_Onetrust_Banner_HomePage",
     "value": "onetrust-accept-btn-handler",
     "type": "id"
   },
   {
-    "key": "details_Onetrust_Banner",
+    "key": "details_Onetrust_Banner_HomePage",
     "value": "onetrust-pc-btn-handler",
     "type": "id"
   },
   {
-    "key": "",
+    "key": "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_HomePage",
     "value": "//div[@data-testid='root']//div[@role='presentation']//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']",
-    "type": ""
+    "type": "xpath",
+    "keyValueChanger": true
   },
   {
-    "key": "5",
+    "key": "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_HomePage",
     "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//button[./*[text()='{{spotifyLSingUpButtonInStartFreeSpotifyAccount}}']]",
-    "type": ""
+    "type": "xpath",
+    "keyValueChanger": true
   },
   {
-    "key": "5",
+    "key": "downloadAppButton_FreeSpotifyAccountBanner_HomePage",
     "value": "button[data-tesid='upsell-download-app-button']",
-    "type": ""
+    "type": "css"
   },
   {
-    "key": "5",
+    "key": "spotifyLogin_FreeSpotifyAccountBanner_HomePage",
     "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//p/span[text()='{{spotifyLAlreadyHaveAnAccount}}']/following-sibling::a[text()='{{spotifyLLogIn}}']",
-    "type": ""
+    "type": "xpath",
+    "keyValueChanger": true
   },
   {
-    "key": "5",
+    "key": "close_FreeSpotifyAccountBanner_HomePage",
     "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//button[text()='{{spotifyLClose}}']",
-    "type": ""
+    "type": "xpath",
+    "keyValueChanger": true
   },
   {
-    "key": "5",
+    "key": "languageButton_HomePage",
     "value": "button[data-testid='language-selection-button']",
     "type": "css"
   },
@@ -65,9 +69,14 @@
     "type": ""
   },
   {
-    "key": "5",
-    "value": "",
-    "type": ""
+    "key": "signup_HomePage",
+    "value": "button[data-testid=\"signup-button\"]",
+    "type": "css"
+  },
+  {
+    "key": "loginButton_HomePage",
+    "value": "button[data-testid=\"login-button\"]",
+    "type": "css"
   },
   {
     "key": "5",

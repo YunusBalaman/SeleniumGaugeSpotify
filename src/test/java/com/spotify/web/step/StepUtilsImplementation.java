@@ -119,7 +119,7 @@ public class StepUtilsImplementation {
     @Step("<value> textinin <oldValue> degeriyle <newValue> degerini degistir ve <mapKey> değerinde tut")
     public void replaceText(String value, String oldValue, String newValue, String mapKey){
 
-        value = value.endsWith("KeyValue") ? Driver.TestMap.get(value).toString() : value;
+        value = methodsUtil.setValueWithMapKey(value);
         value = value.replace(oldValue,newValue);
         Driver.TestMap.put(mapKey, value);
     }
@@ -148,7 +148,7 @@ public class StepUtilsImplementation {
     @Step("<jsonString> json textini <values> degerleriyle <types> degistir ve <mapKey> keyinde tut")
     public void setJsonString(String jsonString, String values, String types, String mapKey){
 
-        jsonString = jsonString.endsWith("KeyValue") ? Driver.TestMap.get(jsonString).toString() : jsonString;
+        jsonString = methodsUtil.setValueWithMapKey(jsonString);
         Driver.TestMap.put(mapKey, methodsUtil.setStringJson(jsonString,"!!", values, types));
     }
 
@@ -403,15 +403,10 @@ public class StepUtilsImplementation {
         Driver.TestMap.put(mapKey, value);
     }
 
-    @Step("<value> degerini <mapKey> keyinde tut if <condition>")
-    public void saveData(String value, String mapKey, String condition) {
+    @Step("<value> degerini <mapKey> keyinde tut if <ifCondition>")
+    public void saveData(String value, String mapKey, String ifCondition) {
 
-        boolean reverse = condition.startsWith("!");
-        condition = reverse ? condition.substring(1) : condition;
-        boolean isTrue = condition.endsWith("KeyValue") ? Boolean.parseBoolean(Driver.TestMap.get(condition).toString())
-                : Boolean.parseBoolean(condition);
-        isTrue = reverse != isTrue;
-        if (isTrue) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition))) {
             value = methodsUtil.setValueWithMapKey(value);
             Driver.TestMap.put(mapKey, value);
         }
@@ -584,12 +579,7 @@ public class StepUtilsImplementation {
     @Step("<csvListKeyValue> degerleri <fileLocation> dosya yoluna data ekle <condition>")
     public void addToCsvFile(String csvListKeyValue, String fileLocation, String condition){
 
-        boolean value = condition.startsWith("!");
-        condition = value ? condition.substring(1) : condition;
-        boolean isTrue = condition.endsWith("KeyValue") ? Boolean.parseBoolean(Driver.TestMap.get(condition).toString())
-                : Boolean.parseBoolean(condition);
-        isTrue = value != isTrue;
-        if (isTrue) {
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(condition))) {
             List<String> csvList = (List<String>) Driver.TestMap.get(csvListKeyValue);
             methodsUtil.addCsv(csvList, fileLocation, true);
         }

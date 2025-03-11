@@ -26,6 +26,7 @@ public class SpotifyStepImplementation {
     @Step("<language> Spotify Language Properties")
     public void spotifyLanguageProperties(String language){
 
+        language = methodsUtil.setValueWithMapKey(language);
         ResourceBundle resourceBundle = null;
         String path = methodsUtil.getResourceTargetPath("languages");
         switch(language){

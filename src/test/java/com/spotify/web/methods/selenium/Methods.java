@@ -38,12 +38,14 @@ public class Methods {
     JsMethods jsMethods;
     ActionMethods actionMethods;
     MethodsUtil methodsUtil;
-    long waitElementTimeout = 20;
-    long pollingEveryValue = 250;
+    long waitElementTimeout;
+    long pollingEveryValue;
 
     public Methods(){
 
         this.driver = Driver.webDriver;
+        waitElementTimeout = Driver.waitElementTimeout;
+        pollingEveryValue = Driver.pollingEveryValue;
         wait = setFluentWait(waitElementTimeout, pollingEveryValue);
         jsMethods = new JsMethods();
         actionMethods = new ActionMethods();
