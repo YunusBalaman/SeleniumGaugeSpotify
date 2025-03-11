@@ -27,16 +27,7 @@ public class SpotifyStepImplementation {
     public void spotifyLanguageProperties(String language){
 
         ResourceBundle resourceBundle = null;
-        URI uri = null;
-        String path = "";
-        try {
-            uri = new URI(this.getClass().getClassLoader().getResource("languages").getFile());
-            File file = new File(uri.getPath());
-            path = file.getAbsolutePath();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            throw new NullPointerException("File Directory Is Not Found!");
-        }
+        String path = methodsUtil.getResourceTargetPath("languages");
         switch(language){
             case "en":
             case "tr":

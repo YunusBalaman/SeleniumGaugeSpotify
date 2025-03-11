@@ -1,0 +1,9 @@
+
+# <username> Kullanıcı adi ve <password> şifresiyle giriş yapılır
+* "username_Login" elementinin tıklanabilir olması kontrol edilir
+* "password_Login" elementinin tıklanabilir olması kontrol edilir
+* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* "username_Login" elementine <username> değerini yaz
+* "password_Login" elementine <password> değerini yaz
+* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* "signIn_Login" elementine tıkla

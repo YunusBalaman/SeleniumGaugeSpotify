@@ -1,6 +1,6 @@
-package com.spotify.web.methods;
+package com.spotify.web.methods.selenium;
 
-import com.spotify.web.methods.selenium.Methods;
+import com.spotify.web.methods.MethodsUtil;
 import org.openqa.selenium.By;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,11 +25,12 @@ public class CommonProcess {
         methods.click(by);
     }
 
-    public void clickButtonWithJs(By by, long timeout){
+    public void clickButtonWithJs(By by, long milliSeconds){
 
         checkElementVisible(by);
         checkElementClickable(by);
-        methodsUtil.waitByMilliSeconds(timeout,false);
+        if (milliSeconds > 0)
+            methodsUtil.waitByMilliSeconds(milliSeconds,false);
         methods.clickElementJs(by);
     }
 
@@ -60,11 +61,11 @@ public class CommonProcess {
 
     public void checkElementVisible(By by){
 
-        assertTrue(methods.isElementVisible(by,30));
+        assertTrue(methods.isElementVisible(by, methods.waitElementTimeout));
     }
 
     public void checkElementClickable(By by){
 
-        assertTrue(methods.isElementClickable(by,30));
+        assertTrue(methods.isElementClickable(by, methods.waitElementTimeout));
     }
 }

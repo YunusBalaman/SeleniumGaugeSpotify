@@ -38,7 +38,7 @@ public class Methods {
     JsMethods jsMethods;
     ActionMethods actionMethods;
     MethodsUtil methodsUtil;
-    long waitElementTimeout = 30;
+    long waitElementTimeout = 20;
     long pollingEveryValue = 250;
 
     public Methods(){

@@ -2,7 +2,7 @@ package com.spotify.web.step;
 
 import com.spotify.web.driver.Driver;
 import com.spotify.web.driver.SeleniumDevtools;
-import com.spotify.web.methods.CommonProcess;
+import com.spotify.web.methods.selenium.CommonProcess;
 import com.spotify.web.methods.selenium.Methods;
 import com.spotify.web.methods.MethodsUtil;
 import com.spotify.web.methods.devtools.MethodsDevTools;

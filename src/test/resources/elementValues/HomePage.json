@@ -15,7 +15,7 @@
     "type": "id"
   },
   {
-    "key": "5",
+    "key": "",
     "value": "//div[@data-testid='root']//div[@role='presentation']//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']",
     "type": ""
   },

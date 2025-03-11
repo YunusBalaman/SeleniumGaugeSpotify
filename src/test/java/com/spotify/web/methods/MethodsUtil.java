@@ -33,6 +33,8 @@ import java.io.Writer;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -1199,6 +1201,21 @@ public class MethodsUtil {
             }
             return url.startsWith(baseUri);
         });
+    }
+
+    public String getResourceTargetPath(String path){
+
+        URI uri = null;
+        String resourcePath = "";
+        try {
+            uri = new URI(Objects.requireNonNull(this.getClass().getClassLoader().getResource(path)).getFile());
+            File file = new File(uri.getPath());
+            resourcePath = file.getAbsolutePath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            throw new NullPointerException("File Directory Is Not Found!");
+        }
+        return resourcePath;
     }
 
 }
