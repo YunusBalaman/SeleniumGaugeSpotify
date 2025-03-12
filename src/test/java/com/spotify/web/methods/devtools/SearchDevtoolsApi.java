@@ -51,9 +51,16 @@ public class SearchDevtoolsApi {
                             apiEndpoint = urlAndParams[0];
                             queryParamMap = new LinkedHashMap<>();
                             String[] params = urlAndParams[1].split("&");
+                            String finalApiEndpoint = apiEndpoint;
                             Arrays.asList(params).forEach(e -> {
                                 String[] keyValue = e.split("=");
-                                queryParamMap.put(keyValue[0], keyValue[1]);
+                                if (keyValue.length == 2) {
+                                    queryParamMap.put(keyValue[0], keyValue[1]);
+                                }else {
+                                   // System.out.println(finalApiEndpoint);
+                                  //  System.out.println(e);
+                                    queryParamMap.put(keyValue[0],"");
+                                }
                             });
                             requestWillBeSentData.setQueryParams(queryParamMap);
                         }

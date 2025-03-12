@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.devtools.v85.emulation.Emulation;
 import org.openqa.selenium.devtools.v85.network.model.RequestId;
 import org.openqa.selenium.devtools.v85.network.Network;
+import org.openqa.selenium.devtools.v85.network.model.ResourceType;
 
 import java.util.Optional;
 
@@ -37,8 +38,9 @@ public class DevtoolsV85 {
 
         SeleniumDevtools.devTools.addListener(Network.requestWillBeSent(), requestWillBeSent -> {
             String url = requestWillBeSent.getRequest().getUrl();
-            if (methodsUtil.urlFilter(url) && requestWillBeSent.getType().isPresent()
-                    && requestWillBeSent.getType().get().toString().equals("XHR")) {
+            Optional<ResourceType> type = requestWillBeSent.getType();
+            if (methodsUtil.urlFilter(url) && type.isPresent()
+                    && (type.get().toString().equals("XHR") || type.get().toString().equals("Fetch"))) {
                 RequestWillBeSentData requestWillBeSentData = new RequestWillBeSentData(requestWillBeSent.getRequestId().toString()
                         , url, requestWillBeSent.getRequest().getMethod()
                         , (requestWillBeSent.getRequest().getPostData().isPresent() ? requestWillBeSent.getRequest().getPostData().get() : "")
@@ -49,10 +51,10 @@ public class DevtoolsV85 {
             }
         });
         SeleniumDevtools.devTools.addListener(Network.responseReceived(), responseReceived -> {
-
             String url = responseReceived.getResponse().getUrl();
+            ResourceType type = responseReceived.getType();
             if (methodsUtil.urlFilter(url)
-                    && responseReceived.getType().toString().equals("XHR")) {
+                    && (type.toString().equals("XHR") || type.toString().equals("Fetch"))) {
                 ResponseReceivedData responseReceivedData = new ResponseReceivedData(responseReceived.getRequestId().toString()
                         , url, responseReceived.getResponse().getStatus(), responseReceived.getResponse().getMimeType()
                         , responseReceived.getResponse().getHeaders().toJson(), System.currentTimeMillis()

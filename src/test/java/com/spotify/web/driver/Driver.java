@@ -45,7 +45,7 @@ public class Driver {
     public void beforeSuite(ExecutionContext executionContext){
 
         baseUriList = new ArrayList<>();
-        baseUriList.addAll(List.of(new String[]{"{regex}https://.*\\.spotify\\.com.*"}));
+        baseUriList.addAll(List.of(new String[]{"{regex}https://[a-z0-9-.]+\\.spotify\\.com/.*"}));
 //        baseUriList.addAll(List.of(new String[]{"https://gew4-spclient.spotify.com", "https://api-partner.spotify.com",
 //                "https://www.spotify.com/api","https://clienttoken.spotify.com","https://apresolve.spotify.com"
 //                ,"https://spclient.wg.spotify.com"}));

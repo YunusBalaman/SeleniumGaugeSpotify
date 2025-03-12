@@ -12,7 +12,6 @@ import com.spotify.web.methods.devtools.utils.ProfilerScriptCoverage;
 import com.spotify.web.methods.devtools.utils.debuggerScriptParsed.DebuggerScriptParsed;
 import com.spotify.web.methods.devtools.utils.networkRequestWillBeSent.RequestWillBeSentData;
 import com.thoughtworks.gauge.Step;
-
 import java.util.List;
 
 public class StepDevTools {
@@ -64,6 +63,8 @@ public class StepDevTools {
     @Step("Listen network api requests")
     public void setDevtoolsAndListenNetworkApiRequest(){
 
+       // methodsDevTools.listenRequestWillBeSent(SeleniumDevtools.devtoolsVersion);
+       // methodsDevTools.listenResponseReceived(SeleniumDevtools.devtoolsVersion);
         methodsDevTools.listenNetworkApiRequest(SeleniumDevtools.devtoolsVersion);
     }
 
@@ -86,7 +87,7 @@ public class StepDevTools {
         methodsUtil.writeFile(stringBuilder.toString(),Driver.userDir + Driver.slash + "denmedevtoolsProduct.txt");
          */
          SeleniumDevtools.requestIdList.forEach(a ->System.out.println(SeleniumDevtools.requestWillBeSentMap.get(a).getApiEndpoint()
-                + " " + SeleniumDevtools.requestWillBeSentMap.get(a).getApiMethod() + " " + SeleniumDevtools.requestWillBeSentMap.get(a).getDocumentUrl()));
+             + " " + SeleniumDevtools.requestWillBeSentMap.get(a).getApiMethod() + " " + SeleniumDevtools.requestWillBeSentMap.get(a).getDocumentUrl()));
     }
 
 
@@ -96,14 +97,16 @@ public class StepDevTools {
         int numberDevtools = Integer.parseInt(methodsUtil.setValueWithMapKey(number));
         List<RequestData> requestDataList = searchDevtoolsApi.getRequestData(apiUrl, apiMethod.toUpperCase(), numberDevtools, 0, 10, 100, 0);
         if (!requestDataList.isEmpty()) {
-            RequestData requestData = requestDataList.get(0);
-            RequestWillBeSentData requestWillBeSentData = SeleniumDevtools.requestWillBeSentMap.get(requestData.getRequestId());
-            System.out.println("getHeader: " + requestWillBeSentData.getHeader());
-            System.out.println("getPathParams: " + requestWillBeSentData.getMultipartFormDataMap());
-          //  System.out.println("getRequestBody: " + requestWillBeSentData.getRequestBody());
-            System.out.println("getRequestBodyMap: " + requestWillBeSentData.getRequestBodyMap());
-            System.out.println("getQueryParams: " + requestWillBeSentData.getQueryParams());
-            System.out.println(requestWillBeSentData.getUrl() + " " + requestData.getResponseBody());
+            for (RequestData requestData :requestDataList) {
+                RequestWillBeSentData requestWillBeSentData = SeleniumDevtools.requestWillBeSentMap.get(requestData.getRequestId());
+                System.out.println("getHeader: " + requestWillBeSentData.getHeader());
+                System.out.println("getPathParams: " + requestWillBeSentData.getMultipartFormDataMap());
+                //  System.out.println("getRequestBody: " + requestWillBeSentData.getRequestBody());
+                System.out.println("getRequestBodyMap: " + requestWillBeSentData.getRequestBodyMap());
+                System.out.println("getQueryParams: " + requestWillBeSentData.getQueryParams());
+                System.out.println(requestWillBeSentData.getUrl() + " " + requestData.getResponseBody());
+                System.out.println("------------------------------------------------------------------------------------");
+            }
         }
     }
 

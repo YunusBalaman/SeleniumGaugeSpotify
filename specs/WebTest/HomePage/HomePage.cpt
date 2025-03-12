@@ -33,7 +33,7 @@
 * "close_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
 * "close_FreeSpotifyAccountBanner_HomePage" elementine tıkla if "{{isExistStartFreeSpotifyAccountTitle}}"
 
-# Homepage sayfasında olunduğu kontrol edilir
+# Homepage sayfasında olunduğu kontrol edilir first
 * waitPageLoadCompleteJs
 * waitPageScrollingCompleteJs
 * Şu anki url "https://open.spotify.com/" ile "startWith" durumunu sağlıyor mu "20"
@@ -43,6 +43,14 @@
 * "{{languageButtonText}}" Spotify Language Properties
 * "{{spotifyLLoginUrlSuffix}}" degerini "urlLanguageSuffix" keyinde tut
 * Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
+* "signup_HomePage" elementinin görünür olması kontrol edilir
+* "loginButton_HomePage" elementinin görünür olması kontrol edilir
+
+# Homepage sayfasında olunduğu kontrol edilir
+* waitPageLoadCompleteJs
+* waitPageScrollingCompleteJs
+* Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
+* "languageButton_HomePage" elementinin görünür olması kontrol edilir
 * "signup_HomePage" elementinin görünür olması kontrol edilir
 * "loginButton_HomePage" elementinin görünür olması kontrol edilir
 

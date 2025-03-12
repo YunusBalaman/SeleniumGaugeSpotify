@@ -15,8 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.devtools.v133.debugger.Debugger;
 import org.openqa.selenium.devtools.v133.network.Network;
-import org.openqa.selenium.devtools.v133.network.model.PostDataEntry;
-import org.openqa.selenium.devtools.v133.network.model.RequestId;
+import org.openqa.selenium.devtools.v133.network.model.*;
 import org.openqa.selenium.devtools.v133.emulation.Emulation;
 import org.openqa.selenium.devtools.v133.page.Page;
 import org.openqa.selenium.devtools.v133.profiler.Profiler;
@@ -54,8 +53,9 @@ public class Devtoolsv133 {
 
         SeleniumDevtools.devTools.addListener(Network.requestWillBeSent(), requestWillBeSent -> {
             String url = requestWillBeSent.getRequest().getUrl();
-            if (methodsUtil.urlFilter(url) && requestWillBeSent.getType().isPresent()
-                    && requestWillBeSent.getType().get().toString().equals("XHR")) {
+            Optional<ResourceType> type = requestWillBeSent.getType();
+            if (methodsUtil.urlFilter(url) && type.isPresent()
+                    && (type.get().toString().equals("XHR") || type.get().toString().equals("Fetch"))) {
                 RequestWillBeSentData requestWillBeSentData = new RequestWillBeSentData(requestWillBeSent.getRequestId().toString()
                         , url, requestWillBeSent.getRequest().getMethod()
                         , (requestWillBeSent.getRequest().getPostDataEntries().isPresent() ? setRequestPostData(requestWillBeSent.getRequest().getPostDataEntries().get()).toString() : "")
@@ -68,8 +68,9 @@ public class Devtoolsv133 {
         SeleniumDevtools.devTools.addListener(Network.responseReceived(), responseReceived -> {
 
             String url = responseReceived.getResponse().getUrl();
+            ResourceType type = responseReceived.getType();
             if (methodsUtil.urlFilter(url)
-                    && responseReceived.getType().toString().equals("XHR")) {
+                    && (type.toString().equals("XHR") || type.toString().equals("Fetch"))) {
                 ResponseReceivedData responseReceivedData = new ResponseReceivedData(responseReceived.getRequestId().toString()
                         , url, responseReceived.getResponse().getStatus(), responseReceived.getResponse().getMimeType()
                         , responseReceived.getResponse().getHeaders().toJson(), System.currentTimeMillis()
