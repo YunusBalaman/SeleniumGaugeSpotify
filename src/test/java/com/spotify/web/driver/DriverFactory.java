@@ -11,6 +11,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,6 +24,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class DriverFactory {
 
@@ -53,6 +56,12 @@ public class DriverFactory {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions options = new ChromeOptions();
+
+        //LoggingPreferences logPrefs = new LoggingPreferences();
+        //logPrefs.enable( LogType.PERFORMANCE, Level.ALL );
+        //logPrefs.enable( LogType.BROWSER, Level.ALL );
+       // options.setCapability( "goog:loggingPrefs", logPrefs );
+
         options.addArguments("--disable-blink-features");
         options.addArguments("--disable-blink-features=AutomationControlled");
        // options.addArguments("disable-extensions");

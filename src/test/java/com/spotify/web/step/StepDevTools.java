@@ -91,44 +91,27 @@ public class StepDevTools {
     }
 
 
-    @Step("<apiUrl> apiUrl <apiMethod> Network <number>")
-    public void getApiResponse(String apiUrl, String apiMethod,String number) {
+    @Step("<apiEndpoint> apiEndpoint <apiMethod> Network <number>")
+    public void getApiResponse(String apiEndpoint, String apiMethod,String number) {
 
         int numberDevtools = Integer.parseInt(methodsUtil.setValueWithMapKey(number));
-        List<RequestData> requestDataList = searchDevtoolsApi.getRequestData(apiUrl, apiMethod.toUpperCase(), numberDevtools, 0, 10, 100, 0);
+        List<RequestData> requestDataList = searchDevtoolsApi.getRequestData(apiEndpoint, apiMethod.toUpperCase(), numberDevtools, 0, 10, 100, 0);
         if (!requestDataList.isEmpty()) {
             for (RequestData requestData :requestDataList) {
                 RequestWillBeSentData requestWillBeSentData = SeleniumDevtools.requestWillBeSentMap.get(requestData.getRequestId());
+                System.out.println("ApiMethod: " + requestWillBeSentData.getApiMethod());
                 System.out.println("getHeader: " + requestWillBeSentData.getHeader());
-                System.out.println("getPathParams: " + requestWillBeSentData.getMultipartFormDataMap());
+                System.out.println("getPathParams: " + requestWillBeSentData.getPathParams());
+                System.out.println("getMultipartFormDataMap: " + requestWillBeSentData.getMultipartFormDataMap());
                 //  System.out.println("getRequestBody: " + requestWillBeSentData.getRequestBody());
                 System.out.println("getRequestBodyMap: " + requestWillBeSentData.getRequestBodyMap());
                 System.out.println("getQueryParams: " + requestWillBeSentData.getQueryParams());
                 System.out.println(requestWillBeSentData.getUrl() + " " + requestData.getResponseBody());
+                System.out.println(SeleniumDevtools.responseReceivedMap.get(requestData.getRequestId()).getStatus());
                 System.out.println("------------------------------------------------------------------------------------");
             }
+
         }
-    }
-
-    @Step("<apiEndpoint> apiEndpoint <apiMethod> apiMethod Network request <number>")
-    public void demo(String apiEndpoint, String apiMethod, String number){
-
-        int numberDevtools = Integer.parseInt(methodsUtil.setValueWithMapKey(number));
-        List<RequestData> requestDataList = searchDevtoolsApi.getRequestData(apiEndpoint,apiMethod.toUpperCase(), numberDevtools,0,10,100,0);
-        if (!requestDataList.isEmpty()) {
-            RequestData requestData = requestDataList.get(0);
-            RequestWillBeSentData requestWillBeSentData = SeleniumDevtools.requestWillBeSentMap.get(requestData.getRequestId());
-            System.out.println("getHeader: " + requestWillBeSentData.getHeader());
-            System.out.println("getRequestBody: " + requestWillBeSentData.getRequestBody());
-            System.out.println("getQueryParams: " + requestWillBeSentData.getQueryParams());
-            System.out.println(requestWillBeSentData.getUrl() + " " + requestData.getResponseBody());
-        }
-    }
-
-    @Step("Client Coverage Demo")
-    public void clientCoverageDemo(){
-
-        methodsDevTools.clientCoverageDemo(SeleniumDevtools.devtoolsVersion);
     }
 
     @Step("Get client coverage")

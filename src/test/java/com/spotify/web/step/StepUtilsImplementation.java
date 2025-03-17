@@ -767,7 +767,7 @@ public class StepUtilsImplementation {
     @Step("<mapKey> write file <fileLocation>")
     public void writeFile(String mapKey, String fileLocation){
 
-        String json = methodsUtil.getJsonValueWithMap(mapKey);
+        String json = methodsUtil.getJsonElementByMap(mapKey).toString();
         methodsUtil.writeFile(json, fileLocation);
     }
 

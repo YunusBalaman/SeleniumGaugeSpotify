@@ -124,7 +124,10 @@ public class SearchDevtoolsApi {
                     startIndex = j + 1;
                 }
             }
-            if (!requestIdList.isEmpty() && (dataSize <= 0 || dataSize == requestIdList.size())){break;}else
+            if (!requestIdList.isEmpty() && (dataSize <= 0 || dataSize == requestIdList.size())){
+                break;
+            }
+            else
                 methodsUtil.waitByMilliSeconds(250,false);
         }
         for (String requestId : requestIdList) {

@@ -714,12 +714,12 @@ public class MethodsUtil {
         return Pattern.compile("\\{\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}\\}").matcher(value);
     }
 
-    private boolean getMapKeyConditionCurlyBrackets(String value){
+    public boolean getMapKeyConditionCurlyBrackets(String value){
 
         return Pattern.matches("\\{\\{[A-Za-z0-9_\\-?=:;,.%+*$&/()<>|ıİüÜöÖşŞçÇğĞ]+\\}\\}", value);
     }
 
-    private String replaceCurlyBrackets(String value){
+    public String replaceCurlyBrackets(String value){
 
         return value.replace("{{","").replace("}}","");
     }
@@ -1192,23 +1192,32 @@ public class MethodsUtil {
         return resourcePath;
     }
 
-    public String getJsonValueWithMap(String mapKey){
+    public JsonElement getJsonElementByMap(String jsonMapKey){
 
-        String jsonString = mapKey;
-        if (getMapKeyConditionCurlyBrackets(mapKey)){
-            jsonString = Driver.TestMap.get(replaceCurlyBrackets(mapKey)).toString();
+        String jsonString;
+        JsonElement element = null;
+        if(Driver.apiMap.containsKey(jsonMapKey)){
+            jsonString = ((Response)Driver.apiMap.get(jsonMapKey).get("response")).asString();
+            element = JsonParser.parseString(jsonString);
+        }else if(getMapKeyConditionCurlyBrackets(jsonMapKey)){
+            Object value = Driver.TestMap.get(replaceCurlyBrackets(jsonMapKey));
+            if(value instanceof JsonElement){
+                element = (JsonElement) value;
+            }else if(value instanceof String){
+                element = JsonParser.parseString(value.toString());
+            }else
+                fail("Hatalı json data");
+        }else {
+            element = JsonParser.parseString(jsonMapKey);
         }
-        if(Driver.apiMap.containsKey(jsonString)){
-            return ((Response)Driver.apiMap.get(jsonString).get("response")).asString();
-        }
-        JsonElement element = JsonParser.parseString(jsonString);
-        if (element.isJsonArray()){
-            jsonString = element.getAsJsonArray().toString();
-        }
-        if (element.isJsonObject()){
-            jsonString = element.getAsJsonObject().toString();
-        }
-        return jsonString;
+        return element;
+    }
+
+    public String getBase64AuthorizationKey(String secretId, String secretKey){
+
+        String authorizationKey = Base64.getEncoder().encodeToString((secretId + ":" + secretKey).getBytes(StandardCharsets.UTF_8));
+        System.out.println(authorizationKey);
+        return authorizationKey;
     }
 
 }

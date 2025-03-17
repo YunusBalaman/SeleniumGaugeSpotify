@@ -1,87 +1,13 @@
 [
   {
-    "key": "onetrust_Banner_HomePage",
-    "value": "onetrust-banner-sdk",
-    "type": "id"
-  },
-  {
-    "key": "accept_Onetrust_Banner_HomePage",
-    "value": "onetrust-accept-btn-handler",
-    "type": "id"
-  },
-  {
-    "key": "details_Onetrust_Banner_HomePage",
-    "value": "onetrust-pc-btn-handler",
-    "type": "id"
-  },
-  {
-    "key": "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_HomePage",
-    "value": "//div[@data-testid='root']//div[@role='presentation']//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']",
-    "type": "xpath",
-    "keyValueChanger": true
-  },
-  {
-    "key": "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_HomePage",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//button[./*[text()='{{spotifyLSingUpButtonInStartFreeSpotifyAccount}}']]",
-    "type": "xpath",
-    "keyValueChanger": true
-  },
-  {
-    "key": "downloadAppButton_FreeSpotifyAccountBanner_HomePage",
-    "value": "button[data-tesid='upsell-download-app-button']",
+    "key": "userWidgetButton_HomePage",
+    "value": "button[data-testid='user-widget-link']",
     "type": "css"
   },
   {
-    "key": "spotifyLogin_FreeSpotifyAccountBanner_HomePage",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//p/span[text()='{{spotifyLAlreadyHaveAnAccount}}']/following-sibling::a[text()='{{spotifyLLogIn_Banner}}']",
-    "type": "xpath",
-    "keyValueChanger": true
-  },
-  {
-    "key": "close_FreeSpotifyAccountBanner_HomePage",
-    "value": "//div[@data-testid='root']//div[@role='presentation' and .//h2[text()='{{spotifyLStartFreeSpotifyAccountTitle}}']]//button[text()='{{spotifyLClose}}']",
-    "type": "xpath",
-    "keyValueChanger": true
-  },
-  {
-    "key": "languageButton_HomePage",
-    "value": "button[data-testid='language-selection-button']",
+    "key": "newFeedButton_HomePage",
+    "value": "button[data-testid='whats-new-feed-button']",
     "type": "css"
-  },
-  {
-    "key": "5",
-    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div//button[@data-testid='close-button']",
-    "type": ""
-  },
-  {
-    "key": "5",
-    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div[.//button[@data-testid='close-button']]/following-sibling::div[@style=\"--header-height: 92px;\"]",
-    "type": ""
-  },
-  {
-    "key": "5",
-    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div[.//button[@data-testid='close-button']]/following-sibling::div[@style=\"--header-height: 92px;\"]/button[@id='en']",
-    "type": ""
-  },
-  {
-    "key": "5",
-    "value": "//div[@data-testid='language-selection-modal']/div[@aria-labelledby='language-selection-title']/div[.//button[@data-testid='close-button']]/following-sibling::div[not(@style=\"--header-height: 0px;\")]/a[@id='tr']",
-    "type": ""
-  },
-  {
-    "key": "signup_HomePage",
-    "value": "button[data-testid=\"signup-button\"]",
-    "type": "css"
-  },
-  {
-    "key": "loginButton_HomePage",
-    "value": "button[data-testid=\"login-button\"]",
-    "type": "css"
-  },
-  {
-    "key": "5",
-    "value": "",
-    "type": ""
   },
   {
     "key": "5",

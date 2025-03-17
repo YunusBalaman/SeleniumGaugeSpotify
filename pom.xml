@@ -24,8 +24,8 @@
     <maven.resources.version>3.3.1</maven.resources.version>
     <gauge.maven.plugin.version>1.6.3</gauge.maven.plugin.version>
     <gauge.version>0.11.2</gauge.version>
-    <junit5.version>5.12.0</junit5.version>
-    <junit5.platform.version>1.12.0</junit5.platform.version>
+    <junit5.version>5.12.1</junit5.version>
+    <junit5.platform.version>1.12.1</junit5.platform.version>
     <junit4.version>4.13.2</junit4.version>
     <selenium.version>4.29.0</selenium.version>
     <commons-io.version>2.18.0</commons-io.version>
@@ -59,7 +59,7 @@
     <okhttp.version>4.12.0</okhttp.version>
     <okio.version>3.10.2</okio.version>
     <javassist.version>3.30.2-GA</javassist.version>
-    <protobuf-java.version>4.30.0</protobuf-java.version>
+    <protobuf-java.version>4.30.1</protobuf-java.version>
     <org.yaml.version>2.3</org.yaml.version>
     <grpc.version>1.71.0</grpc.version>
     <opentelemetry.version>1.48.0</opentelemetry.version>

@@ -28,14 +28,16 @@ tags:validLoginDevtools
 * Ücretsiz Spotify Kayıt ol Bannerı varsa kapat
 * HomePage Login butonuna tıklanır
 * Login sayfası kontrol edilir
+* Set devtools listen current request number "devtoolsNumber"
 * "" Kullanıcı adi ve "" şifresiyle giriş yapılır
- Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
- Homepage sayfasında olunduğu kontrol edilir
-* "20" saniye bekle
-* "https://open.spotify.com/get_access_token" apiUrl "get" Network "0"
+* Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
+* Login sonrası Anasayfa kontrol edilir
+* "1" saniye bekle
+* "https://open.spotify.com/get_access_token" apiEndpoint "get" Network "{{devtoolsNumber}}"
+* "https://clienttoken.spotify.com/v1/clienttoken" apiEndpoint "" Network "{{devtoolsNumber}}"
 * Clear listeners and close devtools
 * "2" saniye bekle
 
+user-widget-link aria-label
 https://open.spotify.com/get_access_token
 https://clienttoken.spotify.com/v1/clienttoken
-

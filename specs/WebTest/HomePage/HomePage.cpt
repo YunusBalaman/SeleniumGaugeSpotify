@@ -11,51 +11,55 @@
 * "{{spotifyLLoginUrlSuffix}}" degerini "urlLanguageSuffix" keyinde tut
 
 # Çerezleri Kabul et
-* "onetrust_Banner_HomePage" elementinin görünür olması kontrol edilir
-* "accept_Onetrust_Banner_HomePage" elementinin görünür olması kontrol edilir
-* "details_Onetrust_Banner_HomePage" elementinin görünür olması kontrol edilir
-* "accept_Onetrust_Banner_HomePage" elementinin tıklanabilir olması kontrol edilir
-* "accept_Onetrust_Banner_HomePage" elementine tıkla
+* "onetrust_Banner_GuestPage" elementinin görünür olması kontrol edilir
+* "accept_Onetrust_Banner_GuestPage" elementinin görünür olması kontrol edilir
+* "details_Onetrust_Banner_GuestPage" elementinin görünür olması kontrol edilir
+* "accept_Onetrust_Banner_GuestPage" elementinin tıklanabilir olması kontrol edilir
+* "accept_Onetrust_Banner_GuestPage" elementine tıkla
 
 # Ücretsiz Spotify Kayıt ol Bannerını kapat
-* "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir
-* "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir
-* "downloadAppButton_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir
-* "spotifyLogin_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir
-* "close_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir
-* "close_FreeSpotifyAccountBanner_HomePage" elementinin tıklanabilir olması kontrol edilir
-* "close_FreeSpotifyAccountBanner_HomePage" elementine tıkla
+* "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir
+* "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir
+* "downloadAppButton_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir
+* "spotifyLogin_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir
+* "close_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir
+* "close_FreeSpotifyAccountBanner_GuestPage" elementinin tıklanabilir olması kontrol edilir
+* "close_FreeSpotifyAccountBanner_GuestPage" elementine tıkla
 
 # Ücretsiz Spotify Kayıt ol Bannerı varsa kapat
-* "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_HomePage" elementinin var olup olmadığı durumunu "isExistStartFreeSpotifyAccountTitle" keyinde tut "2"
-* "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
-* "spotifyLogin_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
-* "close_FreeSpotifyAccountBanner_HomePage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
-* "close_FreeSpotifyAccountBanner_HomePage" elementine tıkla if "{{isExistStartFreeSpotifyAccountTitle}}"
+* "startFreeSpotifyAccountTitle_FreeSpotifyAccountBanner_GuestPage" elementinin var olup olmadığı durumunu "isExistStartFreeSpotifyAccountTitle" keyinde tut "2"
+* "singUpButtonInStartFreeSpotifyAccount_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
+* "spotifyLogin_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
+* "close_FreeSpotifyAccountBanner_GuestPage" elementinin görünür olması kontrol edilir if "{{isExistStartFreeSpotifyAccountTitle}}"
+* "close_FreeSpotifyAccountBanner_GuestPage" elementine tıkla if "{{isExistStartFreeSpotifyAccountTitle}}"
 
 # Homepage sayfasında olunduğu kontrol edilir first
 * waitPageLoadCompleteJs
 * waitPageScrollingCompleteJs
 * Şu anki url "https://open.spotify.com/" ile "startWith" durumunu sağlıyor mu "20"
-* "languageButton_HomePage" elementinin görünür olması kontrol edilir
-* "languageButton_HomePage" elementinin text değerini "languageButtonText" keyinde tut "true"
+* "languageButton_GuestPage" elementinin görünür olması kontrol edilir
+* "languageButton_GuestPage" elementinin text değerini "languageButtonText" keyinde tut "true"
 * "{{languageButtonText}}" log olarak ekle
 * "{{languageButtonText}}" Spotify Language Properties
 * "{{spotifyLLoginUrlSuffix}}" degerini "urlLanguageSuffix" keyinde tut
 * Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
-* "signup_HomePage" elementinin görünür olması kontrol edilir
-* "loginButton_HomePage" elementinin görünür olması kontrol edilir
+* "signup_GuestPage" elementinin görünür olması kontrol edilir
+* "loginButton_GuestPage" elementinin görünür olması kontrol edilir
 
 # Homepage sayfasında olunduğu kontrol edilir
 * waitPageLoadCompleteJs
 * waitPageScrollingCompleteJs
 * Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
-* "languageButton_HomePage" elementinin görünür olması kontrol edilir
-* "signup_HomePage" elementinin görünür olması kontrol edilir
-* "loginButton_HomePage" elementinin görünür olması kontrol edilir
+* "languageButton_GuestPage" elementinin görünür olması kontrol edilir
+* "signup_GuestPage" elementinin görünür olması kontrol edilir
+* "loginButton_GuestPage" elementinin görünür olması kontrol edilir
 
 # HomePage Login butonuna tıklanır
-* "loginButton_HomePage" elementinin tıklanabilir olması kontrol edilir
-* "loginButton_HomePage" elementine tıkla
+* "loginButton_GuestPage" elementinin tıklanabilir olması kontrol edilir
+* "loginButton_GuestPage" elementine tıkla
 https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F
+
+# Login sonrası Anasayfa kontrol edilir
+* "userWidgetButton_HomePage" elementinin görünür olması kontrol edilir
+* "newFeedButton_HomePage" elementinin görünür olması kontrol edilir
 

@@ -558,9 +558,9 @@ public class StepImplementation {
         LogEntries les = Driver.webDriver.manage().logs().get(LogType.PERFORMANCE);
         for (LogEntry le : les) {
             //if(le.getMessage().contains("\"method\":\"Network.responseReceived\"")) {
-            if(le.getMessage().contains(logContainText)){
-                System.out.println(le.getMessage());
-            }
+           // if(le.getMessage().contains(logContainText)){
+              logger.info(le.getMessage());
+           // }
         }
     }
 
