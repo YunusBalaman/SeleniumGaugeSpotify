@@ -47,12 +47,14 @@ public class StepUtilsImplementation {
 
     @Step("Zamanı milisaniye olarak al ve <mapKey> de tut")
     public void saveCurrentTimeMillis(String mapKey){
+
         logger.info(String.valueOf(methodsUtil.currentTimeMillis()));
         Driver.TestMap.put(mapKey, methodsUtil.currentTimeMillis());
     }
 
     @Step("Zamanı DateTime olarak al ve <mapKey> de tut")
     public void saveCurrentDateTime(String mapKey){
+
         logger.info(methodsUtil.getDateTimeFormat());
         Driver.TestMap.put(mapKey, methodsUtil.getDateTimeFormat());
     }

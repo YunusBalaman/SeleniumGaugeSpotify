@@ -13,28 +13,28 @@ import com.spotify.web.methods.devtools.utils.debuggerScriptParsed.DebuggerScrip
 import com.spotify.web.methods.devtools.utils.debuggerScriptSource.DebuggerScriptSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.devtools.v133.debugger.Debugger;
-import org.openqa.selenium.devtools.v133.network.Network;
-import org.openqa.selenium.devtools.v133.network.model.*;
-import org.openqa.selenium.devtools.v133.emulation.Emulation;
-import org.openqa.selenium.devtools.v133.page.Page;
-import org.openqa.selenium.devtools.v133.profiler.Profiler;
-import org.openqa.selenium.devtools.v133.profiler.model.CoverageRange;
-import org.openqa.selenium.devtools.v133.profiler.model.FunctionCoverage;
-import org.openqa.selenium.devtools.v133.profiler.model.ScriptCoverage;
-import org.openqa.selenium.devtools.v133.runtime.Runtime;
-import org.openqa.selenium.devtools.v133.runtime.model.ScriptId;
+import org.openqa.selenium.devtools.v134.debugger.Debugger;
+import org.openqa.selenium.devtools.v134.network.Network;
+import org.openqa.selenium.devtools.v134.network.model.*;
+import org.openqa.selenium.devtools.v134.emulation.Emulation;
+import org.openqa.selenium.devtools.v134.page.Page;
+import org.openqa.selenium.devtools.v134.profiler.Profiler;
+import org.openqa.selenium.devtools.v134.profiler.model.CoverageRange;
+import org.openqa.selenium.devtools.v134.profiler.model.FunctionCoverage;
+import org.openqa.selenium.devtools.v134.profiler.model.ScriptCoverage;
+import org.openqa.selenium.devtools.v134.runtime.Runtime;
+import org.openqa.selenium.devtools.v134.runtime.model.ScriptId;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Devtoolsv133 {
+public class Devtoolsv134 {
 
-    private static final Logger logger = LogManager.getLogger(Devtoolsv133.class);
+    private static final Logger logger = LogManager.getLogger(Devtoolsv134.class);
     MethodsUtil methodsUtil;
 
-    public Devtoolsv133(){
+    public Devtoolsv134(){
 
         methodsUtil = new MethodsUtil();
     }

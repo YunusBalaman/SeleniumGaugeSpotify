@@ -60,6 +60,7 @@
 https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F
 
 # Login sonrası Anasayfa kontrol edilir
+* Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
 * "userWidgetButton_HomePage" elementinin görünür olması kontrol edilir
 * "newFeedButton_HomePage" elementinin görünür olması kontrol edilir
 

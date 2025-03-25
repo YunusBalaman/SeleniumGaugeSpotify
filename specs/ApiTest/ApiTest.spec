@@ -15,3 +15,9 @@ Authorization
 * "get" requestType ve "/v1/me" i "getProjects" e ekle "String"
 * "getProjects" api testi için istek at, log="true"
 * "getProjects" api testi statusCode değeri "200" değerine eşit mi
+
+Read Mail
+-------------
+
+* Zamanı milisaniye olarak al ve "timeMillis" de tut
+* Read Mail "" mail "" password after time "{{timeMillis}}" loopCount "6" if "true"

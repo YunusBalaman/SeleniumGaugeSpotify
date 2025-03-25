@@ -19,15 +19,26 @@ https://accounts.spotify.com/tr/login
 * "signUp_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextCondition}}"
 
 # <username> Kullanıcı adi ve <password> şifresiyle giriş yapılır
+* "" degerini "spotifySecurityCode" keyinde tut
 * "username_Login" elementinin tıklanabilir olması kontrol edilir
 * "username_Login" elementine <username> değerini yaz
 * "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* Zamanı milisaniye olarak al ve "timeMillis" de tut
 * "signIn_Login" elementine tıkla if "{{loginButtonTextContinueCondition}}"
 Devam butonu çıkınca kod ile doğrulama istiyor...
-* "password_Login" elementinin tıklanabilir olması kontrol edilir
-* "password_Login" elementine <password> değerini yaz
-* "signIn_Login" elementinin tıklanabilir olması kontrol edilir
+* "password_Login" elementinin tıklanabilir olması kontrol edilir if "{{loginButtonTextCondition}}"
+* "password_Login" elementine <password> değerini yaz if "{{loginButtonTextCondition}}"
+* "signIn_Login" elementinin tıklanabilir olması kontrol edilir if "{{loginButtonTextCondition}}"
 * "signIn_Login" elementine tıkla if "{{loginButtonTextCondition}}"
+
+* Read Mail "" mail "" password after time "{{timeMillis}}" loopCount "6" if "{{loginButtonTextContinueCondition}}"
+
+* "input_twofa_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextContinueCondition}}"
+* "resendCodeButton_twofa_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextContinueCondition}}"
+* "signIn_twofa_Login" elementinin görünür olması kontrol edilir if "{{loginButtonTextContinueCondition}}"
+* "input_twofa_Login" elementine "{{spotifySecurityCode}}" sayı değerini yaz if "{{loginButtonTextContinueCondition}}"
+ "signIn_twofa_Login" elementinin tıklanabilir olması kontrol edilir if "{{loginButtonTextContinueCondition}}"
+ "signIn_twofa_Login" elementine tıkla if "{{loginButtonTextContinueCondition}}"
 
 https://accounts.spotify.com/tr/login?continue=https%3A%2F%2Fopen.spotify.com%2Fintl-tr%2F
 https://accounts.spotify.com/en-GB/login?continue=https%3A%2F%2Fopen.spotify.com%2F

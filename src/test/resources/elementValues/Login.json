@@ -45,19 +45,19 @@
     "type": "id"
   },
   {
-    "key": "5",
-    "value": "",
-    "type": ""
+    "key": "input_twofa_Login",
+    "value": "input[data-testid='twofa-digit-input']",
+    "type": "css"
   },
   {
-    "key": "5",
-    "value": "",
-    "type": ""
+    "key": "resendCodeButton_twofa_Login",
+    "value": "a[data-testid='resend-code-button']",
+    "type": "css"
   },
   {
-    "key": "5",
-    "value": "",
-    "type": ""
+    "key": "signIn_twofa_Login",
+    "value": "//button[./span[normalize-space(text())='Oturum aç']]",
+    "type": "xpath"
   },
   {
     "key": "5",

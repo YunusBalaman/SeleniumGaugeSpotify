@@ -30,7 +30,6 @@ tags:validLoginDevtools
 * Login sayfası kontrol edilir
 * Set devtools listen current request number "devtoolsNumber"
 * "" Kullanıcı adi ve "" şifresiyle giriş yapılır
-* Şu anki url "https://open.spotify.com/{{spotifyLUrl}}" ile "startWith" durumunu sağlıyor mu "20"
 * Login sonrası Anasayfa kontrol edilir
 * "1" saniye bekle
 * "https://open.spotify.com/get_access_token" apiEndpoint "get" Network "{{devtoolsNumber}}"

@@ -7,22 +7,22 @@ import com.spotify.web.methods.devtools.ResponseBodyData;
 import com.spotify.web.methods.devtools.ResponseReceivedData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.devtools.v131.network.Network;
-import org.openqa.selenium.devtools.v131.network.model.PostDataEntry;
-import org.openqa.selenium.devtools.v131.network.model.RequestId;
-import org.openqa.selenium.devtools.v131.emulation.Emulation;
-import org.openqa.selenium.devtools.v131.network.model.ResourceType;
+import org.openqa.selenium.devtools.v133.emulation.Emulation;
+import org.openqa.selenium.devtools.v133.network.Network;
+import org.openqa.selenium.devtools.v133.network.model.PostDataEntry;
+import org.openqa.selenium.devtools.v133.network.model.RequestId;
+import org.openqa.selenium.devtools.v133.network.model.ResourceType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DevtoolsV131 {
+public class DevtoolsV133 {
 
-    private static final Logger logger = LogManager.getLogger(DevtoolsV131.class);
+    private static final Logger logger = LogManager.getLogger(DevtoolsV133.class);
     MethodsUtil methodsUtil;
 
-    public DevtoolsV131(){
+    public DevtoolsV133(){
 
         methodsUtil = new MethodsUtil();
     }
@@ -98,6 +98,16 @@ public class DevtoolsV131 {
     }
 
     public void setGeolocationOverride(Number latitude, Number longitude, Number accuracy){
+
+        /**HashMap<String,Object> coordinates = new HashMap<>();
+         coordinates.put("latitude", 28.613939);
+         coordinates.put("longitude", 77.209023);
+         coordinates.put("accuracy", 100);
+
+         ((ChromeDriver)Driver.webDriver).executeCdpCommand("Emulation.setGeolocationOverride", coordinates);
+         */
+        // SeleniumDevtools.devTools.send(Emulation.setGeolocationOverride(Optional.of(28.613939),Optional.of(77.209023),Optional.of(100)));
+        // SeleniumDevtools.devTools.send(Emulation.setGeolocationOverride(Optional.of(40.741895),Optional.of(-73.989308),Optional.of(100)));
 
         SeleniumDevtools.devTools.send(Emulation.setGeolocationOverride(Optional.of(latitude),Optional.of(longitude),Optional.of(accuracy)));
     }

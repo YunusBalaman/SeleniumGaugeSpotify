@@ -23,17 +23,17 @@
     <maven.source.version>3.3.1</maven.source.version>
     <maven.resources.version>3.3.1</maven.resources.version>
     <gauge.maven.plugin.version>1.6.3</gauge.maven.plugin.version>
-    <gauge.version>0.11.2</gauge.version>
+    <gauge.version>0.11.3</gauge.version>
     <junit5.version>5.12.1</junit5.version>
     <junit5.platform.version>1.12.1</junit5.platform.version>
     <junit4.version>4.13.2</junit4.version>
-    <selenium.version>4.29.0</selenium.version>
+    <selenium.version>4.30.0</selenium.version>
     <commons-io.version>2.18.0</commons-io.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
     <commons-pool2.version>2.12.1</commons-pool2.version>
     <commons.codec.version>1.18.0</commons.codec.version>
     <commons.compress.version>1.27.1</commons.compress.version>
-    <commons-csv.version>1.13.0</commons-csv.version>
+    <commons-csv.version>1.14.0</commons-csv.version>
     <commons.exec.version>1.4.0</commons.exec.version>
     <commons.logging.version>1.3.5</commons.logging.version>
     <joda-time.version>2.13.1</joda-time.version>
@@ -48,14 +48,14 @@
     <apache.httpmime.version>4.5.14</apache.httpmime.version>
     <apache.httpcore.version>4.4.16</apache.httpcore.version>
     <apache.httpclient5.version>5.4.2</apache.httpclient5.version>
-    <apache.httpcore5.version>5.3.3</apache.httpcore5.version>
-    <guava.version>33.4.0-jre</guava.version>
+    <apache.httpcore5.version>5.3.4</apache.httpcore5.version>
+    <guava.version>33.4.5-jre</guava.version>
     <log4j.version>2.24.3</log4j.version>
     <slf4j.version>2.0.17</slf4j.version>
     <apache.poi.version>5.4.0</apache.poi.version>
     <apache.xmlbeans.version>5.3.0</apache.xmlbeans.version>
     <zxing.version>3.5.3</zxing.version>
-    <graalvm.version>24.1.2</graalvm.version>
+    <graalvm.version>24.2.0</graalvm.version>
     <okhttp.version>4.12.0</okhttp.version>
     <okio.version>3.10.2</okio.version>
     <javassist.version>3.30.2-GA</javassist.version>
@@ -470,6 +470,21 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.7.5</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.mail</groupId>
+      <artifactId>jakarta.mail-api</artifactId>
+      <version>2.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
+      <version>2.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.angus</groupId>
+      <artifactId>jakarta.mail</artifactId>
+      <version>2.0.3</version>
     </dependency>
   </dependencies>
 

@@ -156,10 +156,17 @@ public class StepImplementation {
         methods.sendKeys(methods.getBy(key),text.substring(text.length()-1));
     }
 
+    @Step("<key> elementine <text> sayı değerini yaz if <ifCondition>")
+    public void sendKeysElementWithNumpad(String key, String text, String ifCondition) {
+
+        if (Boolean.parseBoolean(methodsUtil.setValueWithMapKey(ifCondition)))
+            sendKeysElementWithNumpad(key, text);
+    }
+
     @Step("<key> elementine <text> sayı değerini yaz")
     public void sendKeysElementWithNumpad(String key, String text) {
 
-        methods.sendKeysWithNumpad(methods.getBy(key), text);
+        methods.sendKeysWithNumpad(methods.getBy(key), methodsUtil.setValueWithMapKey(text));
     }
 
     @Step("<url> navigateTo")
