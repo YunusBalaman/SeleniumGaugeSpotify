@@ -14,12 +14,12 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-public class StepReadMailDemoImp {
+public class StepSpotifyUtilsImp {
 
-    private static final Logger logger = LogManager.getLogger(StepReadMailDemoImp.class);
+    private static final Logger logger = LogManager.getLogger(StepSpotifyUtilsImp.class);
     MethodsUtil methodsUtil;
 
-    public StepReadMailDemoImp(){
+    public StepSpotifyUtilsImp(){
 
         methodsUtil = new MethodsUtil();
     }
@@ -72,6 +72,7 @@ public class StepReadMailDemoImp {
                 // 892398 - Spotify güvenlik kodun
                 // "Spotify <no-reply@spotify.com>"
                 //"TEXT/PLAIN; charset=utf-8"
+                store.close();
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }

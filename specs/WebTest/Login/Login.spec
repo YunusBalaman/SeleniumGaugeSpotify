@@ -32,8 +32,10 @@ tags:validLoginDevtools
 * "" Kullanıcı adi ve "" şifresiyle giriş yapılır
 * Login sonrası Anasayfa kontrol edilir
 * "1" saniye bekle
-* "https://open.spotify.com/get_access_token" apiEndpoint "get" Network "{{devtoolsNumber}}"
-* "https://clienttoken.spotify.com/v1/clienttoken" apiEndpoint "" Network "{{devtoolsNumber}}"
+* "https://open.spotify.com/get_access_token" apiEndpoint "get" Network "{{devtoolsNumber}}" api response save map "getAccessTokenResponse"
+* "getAccessTokenResponse" keyindeki api response body i "./jsonFiles/get_access_token.json" json yoluna yaz
+* "https://clienttoken.spotify.com/v1/clienttoken" apiEndpoint "" Network "{{devtoolsNumber}}" api response save map "clienttokenResponse"
+* "clienttokenResponse" keyindeki api response body i "./jsonFiles/clienttoken.json" json yoluna yaz
 * Clear listeners and close devtools
 * "2" saniye bekle
 

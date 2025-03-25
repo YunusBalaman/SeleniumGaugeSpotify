@@ -12,6 +12,8 @@ import com.spotify.web.methods.devtools.utils.ProfilerScriptCoverage;
 import com.spotify.web.methods.devtools.utils.debuggerScriptParsed.DebuggerScriptParsed;
 import com.spotify.web.methods.devtools.utils.networkRequestWillBeSent.RequestWillBeSentData;
 import com.thoughtworks.gauge.Step;
+import org.junit.jupiter.api.Assertions;
+
 import java.util.List;
 
 public class StepDevTools {
@@ -91,8 +93,8 @@ public class StepDevTools {
     }
 
 
-    @Step("<apiEndpoint> apiEndpoint <apiMethod> Network <number>")
-    public void getApiResponse(String apiEndpoint, String apiMethod,String number) {
+    @Step("<apiEndpoint> apiEndpoint <apiMethod> Network <number> api response save map <apiResponseMapKey>")
+    public void getApiResponse(String apiEndpoint, String apiMethod, String number, String apiResponseMapKey) {
 
         int numberDevtools = Integer.parseInt(methodsUtil.setValueWithMapKey(number));
         List<RequestData> requestDataList = searchDevtoolsApi.getRequestData(apiEndpoint, apiMethod.toUpperCase(), numberDevtools, 0, 10, 100, 0);
@@ -108,10 +110,31 @@ public class StepDevTools {
                 System.out.println("getQueryParams: " + requestWillBeSentData.getQueryParams());
                 System.out.println(requestWillBeSentData.getUrl() + " " + requestData.getResponseBody());
                 System.out.println(SeleniumDevtools.responseReceivedMap.get(requestData.getRequestId()).getStatus());
+                //if (requestData.getResponseBody() != null)
+                   // SeleniumDevtools.responseBodyMap.put(requestData.getRequestId(), requestData.getResponseBody());
                 System.out.println("------------------------------------------------------------------------------------");
             }
-
+            Driver.TestMap.put(apiResponseMapKey, requestDataList);
         }
+    }
+
+    @Step("<apiResponseMapKey> keyindeki api response body i <jsonLocation> json yoluna yaz")
+    public void writeApiResponseJsonFile(String apiResponseMapKey, String jsonLocation){
+
+        if(Driver.TestMap.containsKey(apiResponseMapKey)){
+            Object o = Driver.TestMap.get(apiResponseMapKey);
+            if (o instanceof List<?>){
+                List<RequestData> requestDataList = (List<RequestData>) o;
+                String responseBody = requestDataList.get(requestDataList.size()-1).getResponseBody();
+                if (responseBody != null) {
+                    methodsUtil.writeJson(responseBody, jsonLocation,true,true,false);
+                    return;
+                }
+                Assertions.fail("responseBody null");
+            }
+            Assertions.fail("Data hatalı");
+        }
+        Assertions.fail("Data bulunamadı");
     }
 
     @Step("Get client coverage")

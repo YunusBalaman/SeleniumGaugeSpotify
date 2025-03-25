@@ -33,6 +33,7 @@ public class SeleniumDevtools {
     public static CopyOnWriteArrayList<ProfilerPreciseCoverage> clientCoverageList = new CopyOnWriteArrayList<>();
     public static CopyOnWriteArrayList<String> executionContextsClearedList = new CopyOnWriteArrayList<>();
     public static CopyOnWriteArrayList<DebuggerScriptParsed> debuggerScriptParsedList = new CopyOnWriteArrayList<>();
+    //public static ConcurrentHashMap<String, String> responseBodyMap = new ConcurrentHashMap<>();
 
     public SeleniumDevtools() {
 
