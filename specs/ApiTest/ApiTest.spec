@@ -5,7 +5,9 @@ Api Test Scenario
 -------------------
 tags:apiTest
 
-* Get Token
+ Get Token
+* "./jsonFiles/get_access_token.json" json dosyasini string olarak "tokenJson" keyinde tut
+* "{{tokenJson}}" json üzerindeki "accessToken" json yolunu oku "String" tipindeki degeri "token" keyinde tut
 * "getProjects" api testi için map key olustur
 * "https://api.spotify.com" baseUri ı "getProjects" e ekle
 * "JSON" contentType degerini "getProjects" e ekle

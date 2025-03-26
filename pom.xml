@@ -49,7 +49,7 @@
     <apache.httpcore.version>4.4.16</apache.httpcore.version>
     <apache.httpclient5.version>5.4.2</apache.httpclient5.version>
     <apache.httpcore5.version>5.3.4</apache.httpcore5.version>
-    <guava.version>33.4.5-jre</guava.version>
+    <guava.version>33.4.6-jre</guava.version>
     <log4j.version>2.24.3</log4j.version>
     <slf4j.version>2.0.17</slf4j.version>
     <apache.poi.version>5.4.0</apache.poi.version>
