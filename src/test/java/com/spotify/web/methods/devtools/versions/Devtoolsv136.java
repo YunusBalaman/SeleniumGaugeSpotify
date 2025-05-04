@@ -13,28 +13,27 @@ import com.spotify.web.methods.devtools.utils.debuggerScriptParsed.DebuggerScrip
 import com.spotify.web.methods.devtools.utils.debuggerScriptSource.DebuggerScriptSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.devtools.v134.debugger.Debugger;
-import org.openqa.selenium.devtools.v134.network.Network;
-import org.openqa.selenium.devtools.v134.network.model.*;
-import org.openqa.selenium.devtools.v134.emulation.Emulation;
-import org.openqa.selenium.devtools.v134.page.Page;
-import org.openqa.selenium.devtools.v134.profiler.Profiler;
-import org.openqa.selenium.devtools.v134.profiler.model.CoverageRange;
-import org.openqa.selenium.devtools.v134.profiler.model.FunctionCoverage;
-import org.openqa.selenium.devtools.v134.profiler.model.ScriptCoverage;
-import org.openqa.selenium.devtools.v134.runtime.Runtime;
-import org.openqa.selenium.devtools.v134.runtime.model.ScriptId;
-
+import org.openqa.selenium.devtools.v136.debugger.Debugger;
+import org.openqa.selenium.devtools.v136.network.Network;
+import org.openqa.selenium.devtools.v136.network.model.*;
+import org.openqa.selenium.devtools.v136.emulation.Emulation;
+import org.openqa.selenium.devtools.v136.page.Page;
+import org.openqa.selenium.devtools.v136.profiler.Profiler;
+import org.openqa.selenium.devtools.v136.profiler.model.CoverageRange;
+import org.openqa.selenium.devtools.v136.profiler.model.FunctionCoverage;
+import org.openqa.selenium.devtools.v136.profiler.model.ScriptCoverage;
+import org.openqa.selenium.devtools.v136.runtime.Runtime;
+import org.openqa.selenium.devtools.v136.runtime.model.ScriptId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Devtoolsv134 {
+public class Devtoolsv136 {
 
-    private static final Logger logger = LogManager.getLogger(Devtoolsv134.class);
+    private static final Logger logger = LogManager.getLogger(Devtoolsv136.class);
     MethodsUtil methodsUtil;
 
-    public Devtoolsv134(){
+    public Devtoolsv136(){
 
         methodsUtil = new MethodsUtil();
     }
@@ -122,7 +121,7 @@ public class Devtoolsv134 {
         SeleniumDevtools.devTools.send(Profiler.enable());
        // SeleniumDevtools.devTools.send(CSS.enable()); //CSS
        // SeleniumDevtools.devTools.send(CSS.startRuleUsageTracking()); //CSS
-        SeleniumDevtools.devTools.send(Page.enable());
+        SeleniumDevtools.devTools.send(Page.enable(Optional.of(true)));
         SeleniumDevtools.devTools.send(Profiler.startPreciseCoverage(Optional.of(true), Optional.of(true), Optional.of(true)));
         SeleniumDevtools.devTools.send(Debugger.enable(Optional.empty()));
         SeleniumDevtools.devTools.send(Debugger.setSkipAllPauses(true));

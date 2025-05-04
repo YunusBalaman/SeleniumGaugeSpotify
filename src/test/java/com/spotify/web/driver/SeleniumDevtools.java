@@ -88,9 +88,9 @@ public class SeleniumDevtools {
 
     public static Integer getDevtoolsVersion(){
 
-        if (Driver.browser.equals("firefox")){
-            return 85;
-        }
+        //if (Driver.browser.equals("firefox")){
+         //   return 85;
+       // }
         Capabilities capabilities = ((RemoteWebDriver) Driver.webDriver).getCapabilities();
         CdpInfo cdpInfo = new CdpVersionFinder()
                 .match(capabilities.getBrowserVersion())

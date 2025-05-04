@@ -3,13 +3,12 @@ package com.spotify.web.methods.devtools;
 import com.spotify.web.driver.SeleniumDevtools;
 import com.spotify.web.methods.MethodsUtil;
 import com.spotify.web.methods.devtools.utils.ProfilerScriptCoverage;
-import com.spotify.web.methods.devtools.versions.Devtoolsv134;
-import com.spotify.web.methods.devtools.versions.DevtoolsV133;
-import com.spotify.web.methods.devtools.versions.DevtoolsV132;
+import com.spotify.web.methods.devtools.versions.Devtoolsv136;
+import com.spotify.web.methods.devtools.versions.DevtoolsV135;
+import com.spotify.web.methods.devtools.versions.DevtoolsV134;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,16 +18,16 @@ public class MethodsDevTools {
     private static final Logger logger = LogManager.getLogger(MethodsDevTools.class);
 
     MethodsUtil methodsUtil;
-    Devtoolsv134 devtoolsV134;
-    DevtoolsV133 devtoolsV133;
-    DevtoolsV132 devtoolsV132;
+    Devtoolsv136 devtoolsV136;
+    DevtoolsV135 devtoolsV135;
+    DevtoolsV134 devtoolsV134;
 
     public MethodsDevTools(){
 
         methodsUtil = new MethodsUtil();
-        devtoolsV134 = new Devtoolsv134();
-        devtoolsV133 = new DevtoolsV133();
-        devtoolsV132 = new DevtoolsV132();
+        devtoolsV136 = new Devtoolsv136();
+        devtoolsV135 = new DevtoolsV135();
+        devtoolsV134 = new DevtoolsV134();
     }
 
     public void clearListenerAndCloseDevtools(){
@@ -43,14 +42,14 @@ public class MethodsDevTools {
     public void enableNetwork(Integer devtoolsVersion){
 
         switch (devtoolsVersion) {
+            case 136:
+                devtoolsV136.enableNetwork();
+                break;
+            case 135:
+                devtoolsV135.enableNetwork();
+                break;
             case 134:
                 devtoolsV134.enableNetwork();
-                break;
-            case 133:
-                devtoolsV133.enableNetwork();
-                break;
-            case 132:
-                devtoolsV132.enableNetwork();
                 break;
             default:
                 Assertions.fail(devtoolsVersion + " devtools version hatalı");
@@ -60,14 +59,14 @@ public class MethodsDevTools {
     public void disableNetwork(Integer devtoolsVersion){
 
         switch (devtoolsVersion) {
+            case 136:
+                devtoolsV136.disableNetwork();
+                break;
+            case 135:
+                devtoolsV135.disableNetwork();
+                break;
             case 134:
                 devtoolsV134.disableNetwork();
-                break;
-            case 133:
-                devtoolsV133.disableNetwork();
-                break;
-            case 132:
-                devtoolsV132.disableNetwork();
                 break;
             default:
                 Assertions.fail(devtoolsVersion + " devtools version hatalı");
@@ -77,14 +76,14 @@ public class MethodsDevTools {
     public void listenNetworkApiRequest(Integer devtoolsVersion){
 
         switch (devtoolsVersion){
+            case 136:
+                devtoolsV136.listenNetworkApiRequest();
+                break;
+            case 135:
+                devtoolsV135.listenNetworkApiRequest();
+                break;
             case 134:
                 devtoolsV134.listenNetworkApiRequest();
-                break;
-            case 133:
-                devtoolsV133.listenNetworkApiRequest();
-                break;
-            case 132:
-                devtoolsV132.listenNetworkApiRequest();
                 break;
             default:
                 fail(devtoolsVersion + " devtools version hatalı");
@@ -95,14 +94,14 @@ public class MethodsDevTools {
 
         ResponseBodyData responseBodyData = null;
         switch (devtoolsVersion){
+            case 136:
+                responseBodyData = devtoolsV136.getResponseBody(requestId);
+                break;
+            case 135:
+                responseBodyData = devtoolsV135.getResponseBody(requestId);
+                break;
             case 134:
                 responseBodyData = devtoolsV134.getResponseBody(requestId);
-                break;
-            case 133:
-                responseBodyData = devtoolsV133.getResponseBody(requestId);
-                break;
-            case 132:
-                responseBodyData = devtoolsV132.getResponseBody(requestId);
                 break;
             default:
                 fail(devtoolsVersion + " devtools version hatalı");
@@ -114,14 +113,14 @@ public class MethodsDevTools {
 
         String requestPostData = null;
         switch (devtoolsVersion){
+            case 136:
+                requestPostData = devtoolsV136.getRequestPostData(requestId);
+                break;
+            case 135:
+                requestPostData = devtoolsV135.getRequestPostData(requestId);
+                break;
             case 134:
                 requestPostData = devtoolsV134.getRequestPostData(requestId);
-                break;
-            case 133:
-                requestPostData = devtoolsV133.getRequestPostData(requestId);
-                break;
-            case 132:
-                requestPostData = devtoolsV132.getRequestPostData(requestId);
                 break;
             default:
                 fail(devtoolsVersion + " devtools version hatalı");
@@ -132,14 +131,14 @@ public class MethodsDevTools {
     public void setGeolocationOverride(Integer devtoolsVersion, Number latitude, Number longitude, Number accuracy){
 
         switch (devtoolsVersion) {
+            case 136:
+                devtoolsV136.setGeolocationOverride(latitude, longitude, accuracy);
+                break;
+            case 135:
+                devtoolsV135.setGeolocationOverride(latitude, longitude, accuracy);
+                break;
             case 134:
                 devtoolsV134.setGeolocationOverride(latitude, longitude, accuracy);
-                break;
-            case 133:
-                devtoolsV133.setGeolocationOverride(latitude, longitude, accuracy);
-                break;
-            case 132:
-                devtoolsV132.setGeolocationOverride(latitude, longitude, accuracy);
                 break;
             default:
                 Assertions.fail(devtoolsVersion + " devtools version hatalı");
@@ -149,13 +148,13 @@ public class MethodsDevTools {
     public void clientCoverageDemo(Integer devtoolsVersion){
 
         switch (devtoolsVersion) {
-            case 134:
-                devtoolsV134.clientCoverageDemo();
+            case 136:
+                devtoolsV136.clientCoverageDemo();
                 break;
-            case 133:
+            case 135:
                // devtoolsV129;
                 break;
-            case 132:
+            case 134:
                 //devtoolsV128;
                 break;
             default:
@@ -167,13 +166,13 @@ public class MethodsDevTools {
 
         List<ProfilerScriptCoverage> profilerScriptCoverageList = null;
         switch (devtoolsVersion) {
-            case 134:
-                profilerScriptCoverageList = devtoolsV134.takeClientCoverageDemo();
+            case 136:
+                profilerScriptCoverageList = devtoolsV136.takeClientCoverageDemo();
                 break;
-            case 133:
+            case 135:
                 // devtoolsV129;
                 break;
-            case 132:
+            case 134:
                 //devtoolsV128;
                 break;
             default:
@@ -185,13 +184,13 @@ public class MethodsDevTools {
     public void listenPreciseCoverageDeltaUpdate(Integer devtoolsVersion){
 
         switch (devtoolsVersion) {
-            case 134:
-                devtoolsV134.listenPreciseCoverageDeltaUpdate();
+            case 136:
+                devtoolsV136.listenPreciseCoverageDeltaUpdate();
                 break;
-            case 133:
+            case 135:
                 // devtoolsV129;
                 break;
-            case 132:
+            case 134:
                 //devtoolsV128;
                 break;
             default:
@@ -202,13 +201,13 @@ public class MethodsDevTools {
     public void listenDebuggerScriptParsed(Integer devtoolsVersion){
 
         switch (devtoolsVersion) {
-            case 134:
-                devtoolsV134.listenDebuggerScriptParsed();
+            case 136:
+                devtoolsV136.listenDebuggerScriptParsed();
                 break;
-            case 133:
+            case 135:
                 // devtoolsV129;
                 break;
-            case 132:
+            case 134:
                 //devtoolsV128;
                 break;
             default:
@@ -219,13 +218,13 @@ public class MethodsDevTools {
     public void stopClientCoverage(Integer devtoolsVersion){
 
         switch (devtoolsVersion) {
-            case 134:
-                devtoolsV134.stopClientCoverage();
+            case 136:
+                devtoolsV136.stopClientCoverage();
                 break;
-            case 133:
+            case 135:
                 // devtoolsV129;
                 break;
-            case 132:
+            case 134:
                 //devtoolsV128;
                 break;
             default:

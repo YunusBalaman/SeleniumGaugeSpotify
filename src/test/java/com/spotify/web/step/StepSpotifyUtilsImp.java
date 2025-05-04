@@ -67,7 +67,7 @@ public class StepSpotifyUtilsImp {
                     }
                     if (success)
                         break;
-                    methodsUtil.waitBySeconds(10);
+                    methodsUtil.waitBySeconds(10,false);
                 }
                 // 892398 - Spotify güvenlik kodun
                 // "Spotify <no-reply@spotify.com>"
